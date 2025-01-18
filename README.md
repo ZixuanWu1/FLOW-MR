@@ -1,6 +1,6 @@
-# MrMediation
+# FLOW-MR
 
-This is the R package for MrMediation, a Bayesian framework for Mendelian Randomization in the mediation setting.
+This is the R package for FLOW-MR, a Bayesian framework for Mendelian Randomization in the mediation setting.
 
 ## Installation
 
@@ -14,7 +14,7 @@ Then the package can be installed in R from this Github repository:
 
 ```
 library(devtools)
-install_github("ZixuanWu1/MrMediation")
+install_github("ZixuanWu1/FLOW-MR")
 ```
 
 ## Basic Usage
