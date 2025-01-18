@@ -1,4 +1,4 @@
-Package: FLOW-MR
+Package: FLOWMR
 Type: Package
 Title: An R Package for Mendelian Randomization in the mediation setting
 Version: 1.0
