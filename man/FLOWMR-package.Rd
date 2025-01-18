@@ -1,24 +1,24 @@
-\name{MrMediation-package}
-\alias{MrMediation-package}
-\alias{MrMediation}
+\name{FLOWMR-package}
+\alias{FLOWMR-package}
+\alias{FLOWMR}
 \docType{package}
 \title{
-\packageTitle{MrMediation}
+\packageTitle{FLOWMR}
 }
 \description{
-\packageDescription{MrMediation}
+\packageDescription{FLOWMR}
 }
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{MrMediation}
-\packageIndices{MrMediation}
+\packageDESCRIPTION{FLOWMR}
+\packageIndices{FLOWMR}
 ~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
-\packageAuthor{MrMediation}
+\packageAuthor{FLOWMR}
 
-Maintainer: \packageMaintainer{MrMediation}
+Maintainer: \packageMaintainer{FLOWMR}
 }
 \references{
 ~~ Literature or other references for background information ~~

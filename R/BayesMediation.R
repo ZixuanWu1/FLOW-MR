@@ -1,6 +1,6 @@
 #' BayesMediation
 #' 
-#' Bayes approach for MR Mediation model.
+#' Bayes approach for FLOW MR model.
 #' 
 #' @param Gamma_hat The estimated exposure and outcome effects gamma_hat
 #' @param Sd_hat The standarded errors of gamma_hat

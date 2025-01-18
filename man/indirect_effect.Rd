@@ -4,12 +4,20 @@
 \alias{indirect_effect}
 \title{Indirrect effedt}
 \usage{
-indirect_effect(results, K, warmup = 3000)
+indirect_effect(
+  results,
+  K,
+  warmup = 3000,
+  path = NULL,
+  quantiles = c(0.025, 0.5, 0.975)
+)
 }
 \arguments{
 \item{results}{results from gibbs_wrapper}
 
 \item{K}{number of phenotypes}
+
+\item{quantiles}{A vector of quantiles of interests}
 
 \item{warump}{The length of warmup period. Default is 3000}
 }

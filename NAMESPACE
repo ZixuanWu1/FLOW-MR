@@ -1,4 +1,4 @@
-useDynLib(MrMediation, .registration=TRUE)
+useDynLib(FLOWMR, .registration=TRUE)
 importFrom(Rcpp, evalCpp)
 exportPattern("^[[:alpha:]]+")
 export(BayesMediation)

@@ -27,14 +27,14 @@ BayesMediation(
 
 \item{iter}{The number of iterations for gibbs sampler}
 
-\item{warmup}{The nnumber of warmup periods}
+\item{warmup}{The length of warm-up periods}
 
 \item{second}{Whether to run the second stage. Default is False.}
 
 \item{inv}{When inv = False, we are estiming B in Gamma = (I + B) alpha;
 inv = True, we are estimating B in Gamma = B Gamma + alpha.}
 
-\item{cor}{The correlation matrix}
+\item{cor}{The correlation matrix of noise.}
 
 \item{Raw}{Whether to include the unprocessed raw outputs. Default
 is F}

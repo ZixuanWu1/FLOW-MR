@@ -79,7 +79,7 @@ NULL
 #' @param Lambda_inv3 Precomputed inverse covariance matrix
 #' @export
 gibbs_sampler_with_corr <- function(Y, Sd_hat, trait_corr, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b, Lambda3, Lambda_inv3) {
-    .Call(`_MrMediation_gibbs_sampler_with_corr`, Y, Sd_hat, trait_corr, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b, Lambda3, Lambda_inv3)
+    .Call(`_FLOWMR_gibbs_sampler_with_corr`, Y, Sd_hat, trait_corr, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b, Lambda3, Lambda_inv3)
 }
 
 #' Perform Gibbs sampling for mediation MR without correlation
@@ -106,6 +106,6 @@ gibbs_sampler_with_corr <- function(Y, Sd_hat, trait_corr, N, B, sigma, sigma1, 
 #' 
 #' @export
 gibbs_sampler <- function(Y, Sd_hat, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b) {
-    .Call(`_MrMediation_gibbs_sampler`, Y, Sd_hat, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b)
+    .Call(`_FLOWMR_gibbs_sampler`, Y, Sd_hat, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b)
 }
 

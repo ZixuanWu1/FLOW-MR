@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // gibbs_sampler_with_corr
 List gibbs_sampler_with_corr(arma::mat& Y, arma::mat& Sd_hat, arma::mat& trait_corr, int& N, arma::mat& B, double& sigma, arma::vec& sigma1, arma::vec& sigma0, arma::vec& p, arma::mat& A, arma::umat& Z, double& alpha_B, double& beta_B, arma::vec& alpha_0, arma::vec& alpha_1, arma::vec& beta_0, arma::vec& beta_1, arma::vec& a, arma::vec& b, arma::mat& Lambda3, arma::mat& Lambda_inv3);
-RcppExport SEXP _MrMediation_gibbs_sampler_with_corr(SEXP YSEXP, SEXP Sd_hatSEXP, SEXP trait_corrSEXP, SEXP NSEXP, SEXP BSEXP, SEXP sigmaSEXP, SEXP sigma1SEXP, SEXP sigma0SEXP, SEXP pSEXP, SEXP ASEXP, SEXP ZSEXP, SEXP alpha_BSEXP, SEXP beta_BSEXP, SEXP alpha_0SEXP, SEXP alpha_1SEXP, SEXP beta_0SEXP, SEXP beta_1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP Lambda3SEXP, SEXP Lambda_inv3SEXP) {
+RcppExport SEXP _FLOWMR_gibbs_sampler_with_corr(SEXP YSEXP, SEXP Sd_hatSEXP, SEXP trait_corrSEXP, SEXP NSEXP, SEXP BSEXP, SEXP sigmaSEXP, SEXP sigma1SEXP, SEXP sigma0SEXP, SEXP pSEXP, SEXP ASEXP, SEXP ZSEXP, SEXP alpha_BSEXP, SEXP beta_BSEXP, SEXP alpha_0SEXP, SEXP alpha_1SEXP, SEXP beta_0SEXP, SEXP beta_1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP Lambda3SEXP, SEXP Lambda_inv3SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,7 +44,7 @@ END_RCPP
 }
 // gibbs_sampler
 List gibbs_sampler(arma::mat& Y, arma::mat& Sd_hat, int& N, arma::mat& B, double& sigma, arma::vec& sigma1, arma::vec& sigma0, arma::vec& p, arma::mat& A, arma::umat& Z, double& alpha_B, double& beta_B, arma::vec& alpha_0, arma::vec& alpha_1, arma::vec& beta_0, arma::vec& beta_1, arma::vec& a, arma::vec& b);
-RcppExport SEXP _MrMediation_gibbs_sampler(SEXP YSEXP, SEXP Sd_hatSEXP, SEXP NSEXP, SEXP BSEXP, SEXP sigmaSEXP, SEXP sigma1SEXP, SEXP sigma0SEXP, SEXP pSEXP, SEXP ASEXP, SEXP ZSEXP, SEXP alpha_BSEXP, SEXP beta_BSEXP, SEXP alpha_0SEXP, SEXP alpha_1SEXP, SEXP beta_0SEXP, SEXP beta_1SEXP, SEXP aSEXP, SEXP bSEXP) {
+RcppExport SEXP _FLOWMR_gibbs_sampler(SEXP YSEXP, SEXP Sd_hatSEXP, SEXP NSEXP, SEXP BSEXP, SEXP sigmaSEXP, SEXP sigma1SEXP, SEXP sigma0SEXP, SEXP pSEXP, SEXP ASEXP, SEXP ZSEXP, SEXP alpha_BSEXP, SEXP beta_BSEXP, SEXP alpha_0SEXP, SEXP alpha_1SEXP, SEXP beta_0SEXP, SEXP beta_1SEXP, SEXP aSEXP, SEXP bSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -72,12 +72,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_MrMediation_gibbs_sampler_with_corr", (DL_FUNC) &_MrMediation_gibbs_sampler_with_corr, 21},
-    {"_MrMediation_gibbs_sampler", (DL_FUNC) &_MrMediation_gibbs_sampler, 18},
+    {"_FLOWMR_gibbs_sampler_with_corr", (DL_FUNC) &_FLOWMR_gibbs_sampler_with_corr, 21},
+    {"_FLOWMR_gibbs_sampler", (DL_FUNC) &_FLOWMR_gibbs_sampler, 18},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_MrMediation(DllInfo *dll) {
+RcppExport void R_init_FLOWMR(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
