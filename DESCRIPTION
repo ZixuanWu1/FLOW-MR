@@ -1,4 +1,4 @@
-Package: MrMediation
+Package: FLOW-MR
 Type: Package
 Title: An R Package for Mendelian Randomization in the mediation setting
 Version: 1.0
