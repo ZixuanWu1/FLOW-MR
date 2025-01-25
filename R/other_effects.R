@@ -71,7 +71,7 @@ indirect_effect = function(results, K,  warmup = 3000, path = NULL, quantiles = 
     }
     
     
-  }  else if (path == "all") {
+  }  else if (all(path == "all")) {
     
     effects = array( dim = c(K , K, m * (len - warmup) ))
     for(i in 1:m){
