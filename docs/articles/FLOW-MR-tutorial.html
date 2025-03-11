@@ -60,9 +60,9 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>FLOW-MR is an R package for performing Mendelian Randomization under
-the mediation setting. This tutorial demonstrates how to use the package
-step by step.</p>
+<p><code>FLOW-MR</code> is an R package for performing Mendelian
+Randomization under the mediation setting. This tutorial demonstrates
+how to use the package step by step.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -70,15 +70,12 @@ step by step.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install devtools if not installed</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Installing package into '/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpMnRMVQ/temp_libpath4da03610fba6'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmp4E55Rr/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmpf3uGBd/downloaded_packages</span></span>
 <span></span>
 <span><span class="co"># Install FLOW-MR</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ZixuanWu1/FLOW-MR"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading GitHub repo ZixuanWu1/FLOW-MR@HEAD</span></span>
 <span><span class="co">#&gt; rlang        (1.1.4    -&gt; 1.1.5   ) [CRAN]</span></span>
 <span><span class="co">#&gt; cli          (3.6.3    -&gt; 3.6.4   ) [CRAN]</span></span>
 <span><span class="co">#&gt; pillar       (1.9.0    -&gt; 1.10.1  ) [CRAN]</span></span>
@@ -87,14 +84,11 @@ step by step.</p>
 <span><span class="co">#&gt; withr        (3.0.1    -&gt; 3.0.2   ) [CRAN]</span></span>
 <span><span class="co">#&gt; gtable       (0.3.5    -&gt; 0.3.6   ) [CRAN]</span></span>
 <span><span class="co">#&gt; RcppArmad... (14.0.2-1 -&gt; 14.2.3-1) [CRAN]</span></span>
-<span><span class="co">#&gt; Installing 8 packages: rlang, cli, pillar, R6, Rcpp, withr, gtable, RcppArmadillo</span></span>
-<span><span class="co">#&gt; Installing packages into '/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpMnRMVQ/temp_libpath4da03610fba6'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmp4E55Rr/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmpf3uGBd/downloaded_packages</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/Rtmp4E55Rr/remotes52aa58892cdb/ZixuanWu1-FLOW-MR-2d061a7/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/Rtmpf3uGBd/remotes5de17e4f3ecf/ZixuanWu1-FLOW-MR-fd995e0/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘FLOWMR’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * cleaning src</span></span>
@@ -128,17 +122,13 @@ step by step.</p>
 <span><span class="co">#&gt; * cleaning src</span></span>
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt; * building ‘FLOWMR_1.0.tar.gz’</span></span>
-<span><span class="co">#&gt; Installing package into '/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpMnRMVQ/temp_libpath4da03610fba6'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span></code></pre></div>
+<span><span class="co">#&gt; * building ‘FLOWMR_1.0.tar.gz’</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-the-package">Load the Package<a class="anchor" aria-label="anchor" href="#load-the-package"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">FLOWMR</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RobinHankin/magic" class="external-link">magic</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: abind</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">FLOWMR</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-usage">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
@@ -146,24 +136,26 @@ step by step.</p>
 <div class="section level3">
 <h3 id="step-1-prepare-input-data">Step 1: Prepare Input Data<a class="anchor" aria-label="anchor" href="#step-1-prepare-input-data"></a>
 </h3>
-<p>Here we use GRAPPLE read the preprocess the input data. One can
-downlaod the GRAPPLE package using the following command.</p>
+<p>Here, we use <code>GRAPPLE</code> to preprocess the input data. We
+can download the <code>GRAPPLE</code> package using the following
+command:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jingshuw/grapple"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Skipping install of 'GRAPPLE' from a github remote, the SHA1 (317e8373) has not changed since last install.</span></span>
-<span><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span></code></pre></div>
-<p>Then we can use GPAPPLE to pre-process Data. We follow a three-sample
-MR design here. The sel.file will be used to select genome-wide
-significant SNPs. The exp.file contains exposures of interests. The
-out.file contains the outcome of interests. For more details, see <a href="https://github.com/jingshuw/GRAPPLE" class="external-link uri">https://github.com/jingshuw/GRAPPLE</a>.</p>
-<p>In this example we use adult BMI from GIANT and childhoood BMI from
-egg as selections files. We use chilldhood body size and bmi adult from
-UK biobank as exposures, and Breast Cancer from Micha as outcome.</p>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jingshuw/grapple"</span><span class="op">)</span></span></code></pre></div>
+<p>Next, we use <code>GRAPPLE</code> to preprocess the data following a
+three-sample Mendelian Randomization (MR) design. The sel.file is used
+to select genome-wide significant SNPs, the exp.file contains the
+exposures of interest, and the out.file contains the outcomes of
+interest. For more details, visit <a href="https://github.com/jingshuw/GRAPPLE" class="external-link">GRAPPLE</a> on GitHub.</p>
+<p>In this example we use adult BMI from <a href="https://portals.broadinstitute.org/collaboration/giant/index.php/GIANT_consortium_data_files" class="external-link">GIANT</a>
+and childhoood BMI from <a href="http://egg-consortium.org" class="external-link">EGG</a> as
+selections files. We use childhood body size and bmi adult from <a href="https://www.nealelab.is/uk-biobank" class="external-link">UK biobank</a> as exposures,
+and Breast Cancer from this <a href="https://pubmed.ncbi.nlm.nih.gov/29059683" class="external-link">paper</a> as
+outcome.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GRAPPLE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Selection file of snps</span></span>
-<span><span class="va">sel.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"~/Downloads/research/BMI-giant17eu.csv"</span>, <span class="st">"~/Downloads/research/bmi_child_agg.csv"</span> <span class="op">)</span></span>
+<span><span class="va">sel.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"~/Downloads/research/BMI-giant17eu.csv"</span>, <span class="st">"~/Downloads/research/bmi_child_egg.csv"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Exposure file</span></span>
 <span><span class="va">exp.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"~/Downloads/research/childhood_body_size.csv"</span>,<span class="st">"~/Downloads/research/BMI_adult.csv"</span> <span class="op">)</span></span>
@@ -180,25 +172,19 @@ UK biobank as exposures, and Breast Cancer from Micha as outcome.</p>
 <span>                               plink_exe <span class="op">=</span> <span class="st">"~/Downloads/research/plink_mac_20210606/plink"</span>, cal.cor <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Marker candidates will not be obtained as number of risk factors k &gt; 1"</span></span>
 <span><span class="co">#&gt; [1] "loading data for selection: ~/Downloads/research/BMI-giant17eu.csv ..."</span></span>
-<span><span class="co">#&gt; [1] "loading data for selection: ~/Downloads/research/bmi_child_agg.csv ..."</span></span>
+<span><span class="co">#&gt; [1] "loading data for selection: ~/Downloads/research/bmi_child_egg.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from exposure: ~/Downloads/research/childhood_body_size.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from exposure: ~/Downloads/research/BMI_adult.csv ..."</span></span>
-<span><span class="co">#&gt; Warning in harmonise_cleanup_variables(res.tab): NAs introduced by coercion</span></span>
 <span><span class="co">#&gt; [1] "loading data from outcome: ~/Downloads/research/Breast-Micha17erp.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "Start clumping using PLINK ..."</span></span>
-<span><span class="co">#&gt; Loading required package: data.table</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'data.table'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:magic':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     shift</span></span>
 <span><span class="co">#&gt; [1] "813 independent genetic instruments extracted. Done!"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-2-run-flow-mr">Step 2: Run FLOW-MR<a class="anchor" aria-label="anchor" href="#step-2-run-flow-mr"></a>
 </h3>
-<p>In order to run FLOW-MR, we need to prepare two input files Gamma_hat
-and Sd_hat, with the reversed time order</p>
+<p>To run FLOW-MR, we need to prepare two input files,
+<code>Gamma_hat</code> and <code>Sd_hat</code>. Also ensuring that the
+time order is reversed:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span><span class="va">data.list</span><span class="op">$</span><span class="va">data</span>;</span>
 <span></span>
@@ -212,51 +198,53 @@ and Sd_hat, with the reversed time order</p>
 <span>               <span class="va">dat</span><span class="op">$</span><span class="va">se_exp1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">data.list</span><span class="op">$</span><span class="va">cor.mat</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-03-11 16:00:24 CDT"</span></span>
-<span><span class="co">#&gt; [1] "2025-03-11 16:04:49 CDT"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2025-03-11 16:49:11 CDT"</span></span>
+<span><span class="co">#&gt; [1] "2025-03-11 16:53:40 CDT"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-look-at-summary-of-direct-effects">Step 3: Look at summary of direct effects<a class="anchor" aria-label="anchor" href="#step-3-look-at-summary-of-direct-effects"></a>
 </h3>
-<p>Here we print the results of direct effects. Here each row
+<p>In this step, we print the summary of direct effects, where each row
 corresponds to a parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   mean          var           sd         2.5%          50%</span></span>
-<span><span class="co">#&gt; B[1,2]    -0.115401772 5.448561e-03 0.0738143712 -0.258989540 -0.116772516</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.349770699 5.952166e-03 0.0771502819 -0.500633472 -0.349542650</span></span>
-<span><span class="co">#&gt; B[2,3]     1.486012961 3.012862e-03 0.0548895398  1.379180578  1.485076322</span></span>
-<span><span class="co">#&gt; sigma      0.628870999 2.492000e-02 0.1578606978  0.401412398  0.602327181</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.026220009 1.481295e-05 0.0038487602  0.020126852  0.025717490</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.017487449 1.948333e-05 0.0044139927  0.012229485  0.016493869</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.016801650 3.714487e-06 0.0019273004  0.013572255  0.016607753</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.004338455 4.794462e-07 0.0006924205  0.003051686  0.004335923</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.005943455 1.255415e-07 0.0003543183  0.005210316  0.005962192</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.003752879 3.762381e-08 0.0001939686  0.003359107  0.003755688</span></span>
-<span><span class="co">#&gt; p[1]       0.082905498 6.439988e-04 0.0253771313  0.039889868  0.080771651</span></span>
-<span><span class="co">#&gt; p[2]       0.039106441 6.894864e-04 0.0262580725  0.004218164  0.033979817</span></span>
-<span><span class="co">#&gt; p[3]       0.097005043 5.063891e-04 0.0225030909  0.058734997  0.095202473</span></span>
-<span><span class="co">#&gt;                  97.5%        ESS      Rhat</span></span>
-<span><span class="co">#&gt; B[1,2]     0.027441284  3061.5942 0.9999838</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.200982185  3461.0723 1.0000514</span></span>
-<span><span class="co">#&gt; B[2,3]     1.598052519   513.6869 1.0004185</span></span>
-<span><span class="co">#&gt; sigma      1.013003886 11825.9652 1.0002782</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.035130218  1068.4865 1.0006927</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.028499099   969.3300 1.0021815</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.020997320  1747.6425 1.0005458</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.005677666   157.8393 1.0052341</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.006592855   570.3329 1.0030456</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.004127756  1181.4439 1.0010404</span></span>
-<span><span class="co">#&gt; p[1]       0.137895782   605.1173 1.0011770</span></span>
-<span><span class="co">#&gt; p[2]       0.101026303   309.4166 1.0067154</span></span>
-<span><span class="co">#&gt; p[3]       0.145622044  1012.3245 1.0002989</span></span></code></pre></div>
-<p>For instance B[1, 2] represents the effect of adult BMI on breast
-cancer, B[1, 3] represents the direct effect of childhood BMI on breast
-cancer, and B[2, 3] represents the direct effect of childhood BMI on
-Adult BMI. The ESS represents the effective sample size, and Rhat is the
-Gelman-Rubin statistics</p>
-<p>In case of non-convergence (such as large Rhat), one can use the
-following command to see traceplot of posterior samples</p>
+<span><span class="co">#&gt; B[1,2]    -0.116013046 5.583371e-03 0.0747219594 -0.262800074 -0.115312478</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.347019277 6.037359e-03 0.0777004472 -0.498291771 -0.346808605</span></span>
+<span><span class="co">#&gt; B[2,3]     1.487201135 2.560552e-03 0.0506018999  1.392991837  1.485736521</span></span>
+<span><span class="co">#&gt; sigma      0.625067022 2.527243e-02 0.1589730406  0.398531911  0.596673615</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.026199918 1.469070e-05 0.0038328453  0.020154152  0.025735267</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.017721715 2.127148e-05 0.0046121015  0.012128036  0.016718624</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.016862286 3.692366e-06 0.0019215531  0.013698771  0.016671738</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.004322491 4.941584e-07 0.0007029640  0.003038105  0.004286020</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.005956700 1.347499e-07 0.0003670830  0.005181163  0.005982763</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.003759160 3.405266e-08 0.0001845336  0.003396733  0.003758181</span></span>
+<span><span class="co">#&gt; p[1]       0.082793227 6.620370e-04 0.0257300806  0.038708235  0.080481305</span></span>
+<span><span class="co">#&gt; p[2]       0.037962714 7.740770e-04 0.0278222385  0.003715808  0.032109316</span></span>
+<span><span class="co">#&gt; p[3]       0.096484909 4.691556e-04 0.0216599990  0.058502077  0.094857995</span></span>
+<span><span class="co">#&gt;                  97.5%       ESS     Rhat</span></span>
+<span><span class="co">#&gt; B[1,2]     0.028453644 2930.9141 1.000934</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.195530998 3455.7901 1.000583</span></span>
+<span><span class="co">#&gt; B[2,3]     1.586598370  607.1188 1.008644</span></span>
+<span><span class="co">#&gt; sigma      1.016728378 9113.4746 1.000208</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.034875562 1062.9150 1.003855</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.029443998  912.5192 1.005317</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.021158295 1649.9614 1.000860</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.005767657  151.7050 1.014063</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.006603531  458.6894 1.010371</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.004118526 1229.9939 1.001423</span></span>
+<span><span class="co">#&gt; p[1]       0.138746490  543.0026 1.007833</span></span>
+<span><span class="co">#&gt; p[2]       0.107293435  334.8917 1.012843</span></span>
+<span><span class="co">#&gt; p[3]       0.143186812 1003.0891 1.001751</span></span></code></pre></div>
+<p>For example, <code>B[1,2]</code> represents the effect of adult BMI
+on breast cancer, <code>B[1,3]</code> represents the
+d<code>irect effect of childhood BMI on breast cancer, and</code>B[2,3]<code>represents the direct effect of childhood BMI on adult BMI. The</code>ESS
+(Effective Sample Size) quantifies the number of independent samples,
+while <code>Rhat</code> (the Gelman-Rubin statistic) assesses
+convergence.</p>
+<p>If non-convergence issues arise (e.g., a large <code>Rhat</code>
+value), you can use the following command to generate a trace plot of
+the posterior samples:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">FLOWMR</span><span class="fu">::</span><span class="fu"><a href="../reference/traceplot.html">traceplot</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, par <span class="op">=</span> <span class="st">"B"</span>, ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
@@ -264,21 +252,21 @@ following command to see traceplot of posterior samples</p>
 <div class="section level3">
 <h3 id="step-4">Step 4<a class="anchor" aria-label="anchor" href="#step-4"></a>
 </h3>
-<p>One can use the following command to get path-wise effect. For
-example here we look at the path childhood BMI -&gt; Adult BMI -&gt;
-Breast Cancer</p>
+<p>To estimate path-wise effects, use the following command. For
+example, the code below evaluates the indirect effect of childhood BMI
+on breast cancer through adult BMI:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_effect</span> <span class="op">=</span> <span class="fu"><a href="../reference/indirect_effect.html">indirect_effect</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, K <span class="op">=</span> <span class="fl">3</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>,  warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">path_effect</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         Mean       2.5%        50%      97.5%</span></span>
-<span><span class="co">#&gt; 1 -0.1713112 -0.3853506 -0.1726248 0.04051449</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -0.1723755 -0.3898596 -0.1713084 0.04273244</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>This tutorial introduced the key functionalities of FLOW-MR. For
-further details, visit the package documentation.</p>
+<p>This tutorial introduced the key functionalities of FLOW-MR. For more
+details, refer to the package documentation.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
