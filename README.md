@@ -2,7 +2,7 @@
 
 This is the R package for FLOW-MR, a Bayesian framework for Mendelian Randomization in the mediation setting.
 
-For details of the FLOW-MR framework, please refer to our manuscript(https://www.biorxiv.org/content/biorxiv/early/2024/02/12/2024.02.10.579129.full.pdf).
+For details of the FLOW-MR framework, please refer to our [manuscript](https://www.biorxiv.org/content/biorxiv/early/2024/02/12/2024.02.10.579129.full.pdf).
 
 
 
