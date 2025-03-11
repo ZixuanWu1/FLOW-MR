@@ -1,0 +1,15 @@
+url: https://ZixuanWu1.github.io/FLOW-MR/
+
+template:
+  bootstrap: 5
+
+navbar:
+  title: "FLOW-MR"
+  left:
+    - text: "Get Started"
+      href: articles/FLOW-MR-tutorial.html
+
+articles:
+  - title: "Tutorial"
+    contents:
+      - FLOW-MR-tutorial

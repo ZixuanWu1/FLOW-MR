@@ -1,0 +1,123 @@
+---
+title: "FLOW-MR-tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FLOW-MR-tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+FLOW-MR is an R package for performing Mendelian Randomization under the mediation setting. This tutorial demonstrates how to use the package step by step.
+
+
+# Installation
+
+```{r}
+# Install devtools if not installed
+install.packages("devtools")
+
+# Install FLOW-MR
+devtools::install_github("ZixuanWu1/FLOW-MR")
+
+```
+
+# Load the Package
+
+```{r setup}
+library(FLOWMR)
+library(magic)
+```
+
+# Example Usage
+
+
+## Step 1: Prepare Input Data
+
+Here we use GRAPPLE read the preprocess the input data. One can downlaod the GRAPPLE package using the following command. 
+
+```{r}
+devtools::install_github("jingshuw/grapple")
+```
+
+Then we can use GPAPPLE to pre-process Data. We follow a three-sample MR design here. The sel.file will be used to select genome-wide significant SNPs. The exp.file contains exposures of interests. The out.file contains the outcome of interests. For more details, see https://github.com/jingshuw/GRAPPLE. 
+
+In this example we use adult BMI from GIANT and childhoood BMI from egg as selections files. We use chilldhood body size and bmi adult from UK biobank as exposures, and Breast Cancer from Micha as outcome. 
+
+```{r}
+library(GRAPPLE)
+
+# Selection file of snps
+sel.file <- c("~/Downloads/research/BMI-giant17eu.csv", "~/Downloads/research/bmi_child_agg.csv" )
+
+# Exposure file
+exp.file <- c( "~/Downloads/research/childhood_body_size.csv","~/Downloads/research/BMI_adult.csv" )
+
+# Outcome file
+out.file <- "~/Downloads/research/Breast-Micha17erp.csv"
+
+# Use plink to select independent significant SNPs
+plink_refdat <- "~/Downloads/research/data_maf0.01_rs_ref/data_maf0.01_rs_ref"
+
+## Use max.p.thres to decide the significance level of SNPs
+## Use cal.cor = T to compute the noise correlation
+data.list <- GRAPPLE::getInput(sel.file, exp.file, out.file, plink_refdat, max.p.thres =0.01,
+                               plink_exe = "~/Downloads/research/plink_mac_20210606/plink", cal.cor = T)
+```
+
+## Step 2: Run FLOW-MR
+
+In order to run FLOW-MR, we need to prepare two input files Gamma_hat and Sd_hat, with the reversed time order
+
+```{r}
+dat <-data.list$data;
+
+# Run the mediation method
+Gamma_hat =rbind(dat$gamma_out1, 
+                 dat$gamma_exp2,
+                 dat$gamma_exp1)
+
+Sd_hat = rbind(dat$se_out1, 
+               dat$se_exp2,
+               dat$se_exp1)
+
+result = BayesMediation(Gamma_hat, Sd_hat, cor = data.list$cor.mat)
+```
+
+## Step 3: Look at summary of direct effects
+
+Here we print the results of direct effects. Here each row corresponds to a parameter.
+
+```{r}
+print(result$summary)
+```
+
+For instance B[1, 2] represents the effect of adult BMI on breast cancer, B[1, 3] represents the direct effect of childhood BMI  on  breast cancer, and B[2, 3] represents the direct effect of childhood BMI on Adult BMI. The ESS represents the effective sample size, and Rhat is the Gelman-Rubin statistics
+
+In case of non-convergence (such as large Rhat), one can use the following command to see traceplot of posterior samples
+
+```{r}
+FLOWMR::traceplot(result$raw, par = "B", ind = c(1,2))
+```
+
+## Step 4
+
+One can use the following command to get path-wise effect. For example here we look at the path childhood BMI -> Adult BMI -> Breast Cancer
+
+```{r}
+path_effect = indirect_effect(result$raw, K = 3, path = c(3,2,1),  warmup = 3000)
+print(path_effect)
+```
+
+# Conclusion
+
+This tutorial introduced the key functionalities of FLOW-MR. For further details, visit the package documentation.
+
