@@ -23,8 +23,8 @@ install_github("ZixuanWu1/FLOW-MR")
 
 ## Basic Usage
 
-Recall in the Mediation setting, we have $$\Gamma = B \cdot \Gamma + \alpha $$
-where $\Gamma$ is the matrix of true SNP effects, $B$ is an upper-triangular matrix with zero diagonalsand $\alpha$ is the horizontal pleiotropy. One might equivalently write this as $$\Gamma = (I + \tilde{B}) \alpha$$
+Recall in the Mediation setting, we have $$\Gamma = \tilde{B} \cdot \Gamma + \alpha $$
+where $\Gamma$ is the matrix of true SNP effects, $\tilde{B}$ is an upper-triangular matrix with zero diagonalsand $\alpha$ is the horizontal pleiotropy. Here $\tilde{B}$ represents the matrix of direct effects. One might equivalently write this as $$\Gamma = (I + {B}) \alpha$$
 
 In order to run MrMediation, we will need at least two inputs, Gamma_hat and Sd_hat. The Gamma_hat matrix is an observation of $\Gamma$. Typically it is  a $K \times P$ matrix where $K$ is the number of phenotypes and $P$ is the number of the measured genetic variants. The Sd_hat matrix is the matrix of the standard deviation of noise and is of same dimension as Gamma_hat. 
 
@@ -34,7 +34,7 @@ To estimate the matrix $B$, one can use the following command
 result = BayesMediation(Gamma_hat, Sd_hat, inv = TRUE)
 ```
 
-Here ```inv = TRUE``` implies we are estimating B, as opposed to estimating $\tilde{B}$ when ```inv = FALSE ```.
+Here ```inv = TRUE``` implies we are estimating $\tilde{B}$, as opposed to estimating ${B}$ when ```inv = FALSE ```.
 
 One can also support the correlation among the measurement errors by setting ```cor``` to be the correlation matrix
 
