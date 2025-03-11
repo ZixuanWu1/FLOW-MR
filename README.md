@@ -4,7 +4,7 @@ This is the R package for FLOW-MR, a Bayesian framework for Mendelian Randomizat
 
 For details of the FLOW-MR framework, please refer to our [manuscript](https://www.biorxiv.org/content/biorxiv/early/2024/02/12/2024.02.10.579129.full.pdf).
 
-
+Here we give a brief description of the method. Check [tutorial](https://ZixuanWu1.github.io/FLOW-MR/articles/FLOW-MR-tutorial.html) for the complete workflow.
 
 ## Installation
 
