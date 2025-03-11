@@ -15,4 +15,4 @@ import(doParallel)
 import(foreach)
 import(ggplot2)
 import(stats)
-
+import(magic)
