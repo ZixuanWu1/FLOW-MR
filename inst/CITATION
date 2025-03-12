@@ -1,0 +1,14 @@
+citEntry(
+  entry = "Article",
+  title = "Causal mediation analysis for time-varying heritable risk factors with Mendelian Randomization",
+  author = personList(
+    person("Zixuan", "Wu"),
+    person("Ethan", "Lewis"),
+    person("Qingyuan", "Zhao"),
+    person("Jingshu", "Wang")
+  ),
+  journal = "bioRxiv",
+  year = 2024,
+  pages = "2024--02",
+  publisher = "Cold Spring Harbor Laboratory"
+)
