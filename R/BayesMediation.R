@@ -38,6 +38,9 @@ BayesMediation = function(Gamma_hat, Sd_hat, init = "Random", iter = 6000,
   P = length(Gamma_hat[1,])
   K = length(Gamma_hat[, 1])
   
+  if (!is.null(cor) && (!all(dim(cor) == c(K, K)))) {
+    warning("The dimension of 'cor' is not (K, K)")
+  }
   #Estimate pleiotropy for exposures and outcome
   exps = list()
   for(i in 1: (K-1)) {
