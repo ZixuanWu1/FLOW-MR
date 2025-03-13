@@ -62,7 +62,7 @@ library(GRAPPLE)
 sel.file <- c("~/Downloads/research/BMI-giant17eu.csv", "~/Downloads/research/bmi_child_egg.csv" )
 
 # Exposure file
-exp.file <- c( "~/Downloads/research/childhood_body_size.csv","~/Downloads/research/BMI_adult.csv" )
+exp.file <- c( "~/Downloads/research/childhood_bmi_nat_comm_2019_8years","~/Downloads/research/BMI_adult.csv" )
 
 # Outcome file
 out.file <- "~/Downloads/research/Breast-Micha17erp.csv"
@@ -80,6 +80,9 @@ data.list <- GRAPPLE::getInput(sel.file, exp.file, out.file, plink_refdat, max.p
 
 To run FLOW-MR, we need to prepare two input files, `Gamma_hat` and `Sd_hat`. Also ensuring that the time order is reversed:
 
+
+Here, you can optionally provide `cor_mat`, which represents the shared noise correlation between GWAS summary statistics across traits. This is particularly useful when the GWAS summary statistics include overlapping samples. `GRAPPLE` estimates the noise correlation by first selecting non-significant SNPs (e.g., p-value > 0.5) and then computing the correlation between the estimated effect sizes. The default value is a diagonal matrix.
+
 ```{r}
 dat <-data.list$data;
 
@@ -92,8 +95,12 @@ Sd_hat = rbind(dat$se_out1,
                dat$se_exp2,
                dat$se_exp1)
 
-result = BayesMediation(Gamma_hat, Sd_hat, cor = data.list$cor.mat)
+cor_mat = data.list$cor.mat[3:1, 3:1]
+
+result = BayesMediation(Gamma_hat, Sd_hat, cor = cor_mat )
 ```
+
+
 
 ## Step 3: Look at summary of direct effects
 
