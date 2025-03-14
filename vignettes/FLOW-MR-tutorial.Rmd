@@ -177,14 +177,14 @@ hist(post_B, breaks = 30)
 For `sigma1`, `sgima0` and `p`, the index argument have to be 1 dimensional. For example
 
 ```{r}
-post_p = get_posterior_samples(result$raw, par = "p", ind = 1, warmup = 3000)
+post_p = get_posterior_samples(result$raw, par = "p", K = 3, ind = 1, warmup = 3000)
 hist(post_p)
 ```
 
 For `sigma`, the index argument should be NULL:
 
 ```{r}
-post_sigma = get_posterior_samples(result$raw, par = "sigma", ind = NULL, warmup = 3000)
+post_sigma = get_posterior_samples(result$raw, par = "sigma", K = 3, ind = NULL, warmup = 3000)
 hist(post_sigma)
 ```
 
