@@ -4,6 +4,7 @@
 #' 
 #' @param raw raw results 
 #' @param par parameter of interets
+#' @param K number of traits
 #' @param ind index of the parameter
 #' @param warump The length of warmup period. Default is 3000
 #'  
@@ -11,7 +12,7 @@
 #' 
 #' @export
 
-get_posterior_samples  = function(raw, par, ind = NULL, warmup = 3000) {
+get_posterior_samples  = function(raw, par, K, ind = NULL, warmup = 3000) {
   m = length(raw)
   raw = result_process(raw, K)
   
