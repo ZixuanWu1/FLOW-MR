@@ -72,7 +72,7 @@ how to use the package step by step.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpDkucRo/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmptWTpdY/downloaded_packages</span></span>
 <span></span>
 <span><span class="co"># Install FLOW-MR</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ZixuanWu1/FLOW-MR"</span><span class="op">)</span></span>
@@ -86,9 +86,9 @@ how to use the package step by step.</p>
 <span><span class="co">#&gt; RcppArmad... (14.0.2-1 -&gt; 14.2.3-1) [CRAN]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpDkucRo/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmptWTpdY/downloaded_packages</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpDkucRo/remotes7c715da2a286/ZixuanWu1-FLOW-MR-61a3970/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmptWTpdY/remotes82ab7c5e755f/ZixuanWu1-FLOW-MR-3d2eb46/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘FLOWMR’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * cleaning src</span></span>
@@ -210,8 +210,8 @@ diagonal matrix.</p>
 <span><span class="va">cor_mat</span> <span class="op">=</span> <span class="va">data.list</span><span class="op">$</span><span class="va">cor.mat</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">cor_mat</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-03-14 11:55:25 CDT"</span></span>
-<span><span class="co">#&gt; [1] "2025-03-14 11:57:10 CDT"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2025-03-14 12:34:57 CDT"</span></span>
+<span><span class="co">#&gt; [1] "2025-03-14 12:36:41 CDT"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-look-at-summary-of-direct-effects">Step 3: Look at summary of direct effects<a class="anchor" aria-label="anchor" href="#step-3-look-at-summary-of-direct-effects"></a>
@@ -221,33 +221,33 @@ corresponds to a parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   mean          var           sd         2.5%          50%</span></span>
-<span><span class="co">#&gt; B[1,2]     0.141866051 1.690846e-02 0.1300325229 -0.104926563  0.140193822</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.388057840 2.919489e-02 0.1708651177 -0.734887427 -0.384418091</span></span>
-<span><span class="co">#&gt; B[2,3]     0.713930148 7.093020e-03 0.0842200699  0.570185527  0.706959237</span></span>
-<span><span class="co">#&gt; sigma      0.438861906 1.336051e-02 0.1155876721  0.276587484  0.417741913</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.025779130 1.868805e-05 0.0043229683  0.019017152  0.025219493</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.025750103 6.300285e-05 0.0079374332  0.015839325  0.024068162</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.047771671 9.741439e-05 0.0098698729  0.032528606  0.046388461</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.004271716 7.381307e-07 0.0008591453  0.002761299  0.004214239</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.008388768 6.957819e-07 0.0008341354  0.006730439  0.008401480</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.011020590 1.559711e-06 0.0012488841  0.008687725  0.011006826</span></span>
-<span><span class="co">#&gt; p[1]       0.099314293 1.245940e-03 0.0352978753  0.041376946  0.095277501</span></span>
-<span><span class="co">#&gt; p[2]       0.023073770 3.257777e-04 0.0180493142  0.002542834  0.018454671</span></span>
-<span><span class="co">#&gt; p[3]       0.041990350 2.540267e-04 0.0159382146  0.016782304  0.040033957</span></span>
-<span><span class="co">#&gt;                  97.5%        ESS     Rhat</span></span>
-<span><span class="co">#&gt; B[1,2]     0.407567356  439.25692 1.002105</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.066591058  369.67624 1.007111</span></span>
-<span><span class="co">#&gt; B[2,3]     0.897578677   68.76023 1.001522</span></span>
-<span><span class="co">#&gt; sigma      0.716403789 3004.52552 1.003097</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.035743097 1457.78732 1.000962</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.045771036 3258.89012 1.000128</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.071003778 1137.78288 1.000100</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.006042001  191.53655 1.002549</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.009977830  373.67315 1.010593</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.013549715  352.16442 1.013229</span></span>
-<span><span class="co">#&gt; p[1]       0.177034040  700.56206 1.003329</span></span>
-<span><span class="co">#&gt; p[2]       0.070444940  744.26145 1.002014</span></span>
-<span><span class="co">#&gt; p[3]       0.078818644 1713.76121 1.000228</span></span></code></pre></div>
+<span><span class="co">#&gt; B[1,2]     0.134913387 1.719653e-02 0.1311355442 -0.115930446  0.131241096</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.373274711 2.832795e-02 0.1683090772 -0.707048889 -0.370629141</span></span>
+<span><span class="co">#&gt; B[2,3]     0.715704146 8.267723e-03 0.0909270194  0.554048173  0.708927402</span></span>
+<span><span class="co">#&gt; sigma      0.430773343 1.263640e-02 0.1124117310  0.274130601  0.410737369</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.025843267 1.910750e-05 0.0043712126  0.019143010  0.025225680</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.025620768 5.962903e-05 0.0077219836  0.015781365  0.023996519</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.047493917 9.527704e-05 0.0097609957  0.032502388  0.046127030</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.004456084 7.257935e-07 0.0008519351  0.002936838  0.004406036</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.008318044 7.318712e-07 0.0008554947  0.006593115  0.008331225</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.011111692 1.499355e-06 0.0012244814  0.008846204  0.011085034</span></span>
+<span><span class="co">#&gt; p[1]       0.098620779 1.251526e-03 0.0353769149  0.041497792  0.094618998</span></span>
+<span><span class="co">#&gt; p[2]       0.022496718 2.999404e-04 0.0173187878  0.002380391  0.018029407</span></span>
+<span><span class="co">#&gt; p[3]       0.042391575 2.495704e-04 0.0157977977  0.017679296  0.040252212</span></span>
+<span><span class="co">#&gt;                  97.5%        ESS      Rhat</span></span>
+<span><span class="co">#&gt; B[1,2]     0.397526222  529.39168 1.0080885</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.050858200  429.07182 1.0070260</span></span>
+<span><span class="co">#&gt; B[2,3]     0.929141533   67.83301 1.0295475</span></span>
+<span><span class="co">#&gt; sigma      0.704547143 4815.13038 1.0009763</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.036222806 1523.29069 1.0007237</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.045137731 3150.57332 0.9998395</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.070531483 1262.83868 1.0028611</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.006233283  193.53541 1.0026416</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.009913154  281.13879 1.0195578</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.013653479  338.66724 1.0043035</span></span>
+<span><span class="co">#&gt; p[1]       0.176972208  636.39729 1.0018152</span></span>
+<span><span class="co">#&gt; p[2]       0.067572575  816.55479 0.9999254</span></span>
+<span><span class="co">#&gt; p[3]       0.079586440 1687.87773 1.0009081</span></span></code></pre></div>
 <p>In this summary, we provide the estimated posterior mean, variance,
 standard deviation, 2.5% quantile, median, 97.5% quantile, effective
 sample size (ESS), and Gelman-Rubin Rhat statistic for each parameter.
@@ -267,8 +267,8 @@ the direct direct effect of childhood BMI on breast cancer;
 BMI on adult BMI.</p>
 <p>See the figure below for a visualization.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"/Users/zixuanwu/Documents/GitHub/FLOW-MR/docs/EffectVisual.png"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="..%2Fdocs%2FEffectVisual.png" width="870"></p>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"https://zixuanwu1.github.io/FLOW-MR/articles/FLOW-MR-tutorial_files/figure-html/EffectVisual.png"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="https://zixuanwu1.github.io/FLOW-MR/articles/FLOW-MR-tutorial_files/figure-html/EffectVisual.png"><!-- --></p>
 <p>For the meaning of other parameters, we assume the following priors
 in our manuscript:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mi>k</mi><mi>j</mi></mrow></msub><mo>∼</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mrow><mi>k</mi><mn>0</mn></mrow><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>p</mi><mi>k</mi></msub><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mrow><mi>k</mi><mn>1</mn></mrow><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
@@ -320,8 +320,8 @@ a user-defined warm-up period. The parameter must be one of “B”,
 <p>We can check its quantiles:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">post_B</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        2.5%         50%       97.5% </span></span>
-<span><span class="co">#&gt; -0.73488743 -0.38441809 -0.06659106</span></span></code></pre></div>
+<span><span class="co">#&gt;       2.5%        50%      97.5% </span></span>
+<span><span class="co">#&gt; -0.7070489 -0.3706291 -0.0508582</span></span></code></pre></div>
 <p>And we can also draw a histogram of it for visualization:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_B</span>, breaks <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
@@ -359,7 +359,7 @@ the four chains do not appear similar.</p>
 iterations or adjusting the prior parameters</p>
 </div>
 <div class="section level3">
-<h3 id="step-5-estimating-path-wise-indirect-effects">Step 5 Estimating path-wise / indirect effects<a class="anchor" aria-label="anchor" href="#step-5-estimating-path-wise-indirect-effects"></a>
+<h3 id="step-6-estimating-path-wise-indirect-effects">Step 6 Estimating path-wise / indirect effects<a class="anchor" aria-label="anchor" href="#step-6-estimating-path-wise-indirect-effects"></a>
 </h3>
 <p>To estimate path-wise effects, use the following command. For
 example, the function <code>indirect_effect</code> evaluates the
@@ -367,8 +367,8 @@ indirect effect of childhood BMI on breast cancer through adult BMI:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_effect</span> <span class="op">=</span> <span class="fu"><a href="../reference/indirect_effect.html">indirect_effect</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, K <span class="op">=</span> <span class="fl">3</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>,  warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">path_effect</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        Mean      2.5%        50%     97.5%</span></span>
-<span><span class="co">#&gt; 1 0.1049813 -0.071848 0.09737741 0.3369249</span></span></code></pre></div>
+<span><span class="co">#&gt;        Mean        2.5%       50%     97.5%</span></span>
+<span><span class="co">#&gt; 1 0.1002068 -0.08022223 0.0918291 0.3274408</span></span></code></pre></div>
 <p>The <code>path</code> parameter specifies the path you are interested
 it. In this case it is 3 -&gt; 2 -&gt; 1. Alternatively, instead of
 focusing on a specific path, you can estimate the sum of effects from
@@ -384,28 +384,28 @@ respectively.</p>
 <span><span class="co">#&gt; , , Mean</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.1049813</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.1002068</span></span>
 <span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.025</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 -0.071848</span></span>
-<span><span class="co">#&gt; [2,]    0    0  0.000000</span></span>
-<span><span class="co">#&gt; [3,]    0    0  0.000000</span></span>
+<span><span class="co">#&gt;      [,1] [,2]        [,3]</span></span>
+<span><span class="co">#&gt; [1,]    0    0 -0.08022223</span></span>
+<span><span class="co">#&gt; [2,]    0    0  0.00000000</span></span>
+<span><span class="co">#&gt; [3,]    0    0  0.00000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.5</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      [,1] [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.09737741</span></span>
-<span><span class="co">#&gt; [2,]    0    0 0.00000000</span></span>
-<span><span class="co">#&gt; [3,]    0    0 0.00000000</span></span>
+<span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.0918291</span></span>
+<span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
+<span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.975</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.3369249</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.3274408</span></span>
 <span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span></code></pre></div>
 <p>We can also examine the posterior inference for the total effects,
@@ -416,29 +416,29 @@ which represent the sum of the direct and indirect effects.</p>
 <span><span class="co">#&gt; , , Mean</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.1418661 -0.2830765</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.7139301</span></span>
+<span><span class="co">#&gt; [1,]    0 0.1349134 -0.2730679</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.7157041</span></span>
 <span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.025</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]       [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 -0.1049266 -0.4600292</span></span>
-<span><span class="co">#&gt; [2,]    0  0.0000000  0.5701855</span></span>
+<span><span class="co">#&gt; [1,]    0 -0.1159304 -0.4436384</span></span>
+<span><span class="co">#&gt; [2,]    0  0.0000000  0.5540482</span></span>
 <span><span class="co">#&gt; [3,]    0  0.0000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.5</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.1401938 -0.2812061</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.7069592</span></span>
+<span><span class="co">#&gt; [1,]    0 0.1312411 -0.2706831</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.7089274</span></span>
 <span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.975</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.4075674 -0.1149826</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.8975787</span></span>
+<span><span class="co">#&gt; [1,]    0 0.3975262 -0.1076652</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.9291415</span></span>
 <span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span></code></pre></div>
 <p>Finally, we demonstrate how to extract posterior samples of total,
 indirect, and path-wise effects, similar to how we did for the direct
