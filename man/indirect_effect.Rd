@@ -22,7 +22,7 @@ indirect_effect(
 \item{warump}{The length of warmup period. Default is 3000}
 }
 \value{
-A matrix of indirect effect and its quantiles.
+A K by K by 4 array of summary of direct effect.
 }
 \description{
 Estimate the indirrect effect of an exposure on the outcome

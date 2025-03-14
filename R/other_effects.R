@@ -5,26 +5,39 @@
 #' @param results results from gibbs_wrapper
 #' @param K number of phenotypes
 #' @param warump The length of warmup period. Default is 3000
+#' @param quantiles Quantiles of interests
 #'  
-#' @return A matrix of total effect and its quantiles.
+#' @return A K by K by 4 array of summary of total effect.
 #' 
 #' @export
 
-total_effect = function(results, K, warmup = 3000) {
+total_effect = function(results, K, warmup = 3000, quantiles = c(0.025, 0.5, 0.975)) {
   results = result_process(results, K)
   m = length(results)
   len = utils::tail(dim(results[[1]][["B"]]), n = 1)
-  effects = matrix(0, (K - 1), m * (len - warmup))
+  effects = array( dim = c(K , K, m * (len - warmup) ))
   for(i in 1:m){
     for(j in 1:(len - warmup)){
       temp_B = results[[i]][["B"]][,,(j + warmup)]
-      effects[,( (i - 1) * (len - warmup) + j )] = compute_total(temp_B)[1, dim(temp_B)[1]:2]
-    }}
-  df = matrix(nrow = (K - 1), ncol = 4)
-  for(i in 1:(K - 1)){
-    df[i, 1] = mean(effects[i,])
-    df[i, 2:4] = quantile(effects[i,], c(0.025, 0.5, 0.975))
+      effects[,, ( (i - 1) * (len - warmup) + j )] = (compute_total(temp_B))
+    }
   }
+  r = length(quantiles)
+  df = array(dim = c(K, K, r + 1))
+  for(i in 1:K){
+    for(j in 1:K){
+      df[i, j, 1] = mean(effects[i,j, ])
+      
+      for(rr in 1:r){
+        df[i, j, rr + 1] = quantile(effects[i, j, ], quantiles[rr])
+        
+      }
+      
+      
+    }
+    
+  }
+  dimnames(df)[[3]] = c("Mean", paste("Quantile", quantiles, sep="_"))
   
   return(df)
   
@@ -42,7 +55,7 @@ total_effect = function(results, K, warmup = 3000) {
 #' @param quantiles A vector of quantiles of interests
 #' @param warump The length of warmup period. Default is 3000
 #' 
-#' @return A matrix of indirect effect and its quantiles.
+#' @return A K by K by 4 array of summary of direct effect.
 #' 
 #' @export
 indirect_effect = function(results, K,  warmup = 3000, path = NULL, quantiles =  c(0.025, .5, 0.975)) {
@@ -95,7 +108,8 @@ indirect_effect = function(results, K,  warmup = 3000, path = NULL, quantiles = 
       }
       
     }
-
+    dimnames(df)[[3]] = c("Mean", paste("Quantile", quantiles, sep="_"))
+    
     return(df)
     
   } else{

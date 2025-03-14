@@ -62,11 +62,11 @@
 <div class="section level2">
 <h2 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
-<p>Recall in the Mediation setting, we have <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>=</mo><mi>B</mi><mo>⋅</mo><mi>Γ</mi><mo>+</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\Gamma = B \cdot \Gamma + \alpha </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> is the matrix of true SNP effects, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math> is an upper-triangular matrix with zero diagonalsand <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> is the horizontal pleiotropy. One might equivalently write this as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>+</mo><mover><mi>B</mi><mo accent="true">̃</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\Gamma = (I + \tilde{B}) \alpha</annotation></semantics></math></p>
+<p>Recall in the Mediation setting, we have <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>=</mo><mover><mi>B</mi><mo accent="true">̃</mo></mover><mo>⋅</mo><mi>Γ</mi><mo>+</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\Gamma = \tilde{B} \cdot \Gamma + \alpha </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> is the matrix of true SNP effects, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>B</mi><mo accent="true">̃</mo></mover><annotation encoding="application/x-tex">\tilde{B}</annotation></semantics></math> is an upper-triangular matrix with zero diagonalsand <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> is the horizontal pleiotropy. Here <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>B</mi><mo accent="true">̃</mo></mover><annotation encoding="application/x-tex">\tilde{B}</annotation></semantics></math> represents the matrix of direct effects. One might equivalently write this as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>+</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\Gamma = (I + {B}) \alpha</annotation></semantics></math></p>
 <p>In order to run MrMediation, we will need at least two inputs, Gamma_hat and Sd_hat. The Gamma_hat matrix is an observation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Γ</mi><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>. Typically it is a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>×</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">K \times P</annotation></semantics></math> matrix where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> is the number of phenotypes and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> is the number of the measured genetic variants. The Sd_hat matrix is the matrix of the standard deviation of noise and is of same dimension as Gamma_hat.</p>
 <p>To estimate the matrix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>, one can use the following command</p>
 <pre><code><span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
-<p>Here <code>inv = TRUE</code> implies we are estimating B, as opposed to estimating <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>B</mi><mo accent="true">̃</mo></mover><annotation encoding="application/x-tex">\tilde{B}</annotation></semantics></math> when <code>inv = FALSE</code>.</p>
+<p>Here <code>inv = TRUE</code> implies we are estimating <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>B</mi><mo accent="true">̃</mo></mover><annotation encoding="application/x-tex">\tilde{B}</annotation></semantics></math>, as opposed to estimating <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">{B}</annotation></semantics></math> when <code>inv = FALSE</code>.</p>
 <p>One can also support the correlation among the measurement errors by setting <code>cor</code> to be the correlation matrix</p>
 <pre><code><span><span class="va">result_cor</span> <span class="op">=</span> <span class="fu"><a href="reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">cor_mat</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 <p>In addition, in order to compute the indirect effect of exposures on the outcome, one can simply use the following command</p>
@@ -94,9 +94,10 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Jingshu Wang <br><small class="roles"> Author </small>  </li>
-<li>Ethan Lewis <br><small class="roles"> Author </small>  </li>
 <li>Zixuan Wu <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Ethan Lewis <br><small class="roles"> Author </small>  </li>
+<li>Qingyuan Zhao <br><small class="roles"> Author </small>  </li>
+<li>Jingshu Wang <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -107,7 +108,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jingshu Wang, Ethan Lewis, Zixuan Wu.</p>
+  <p>Developed by Zixuan Wu, Ethan Lewis, Qingyuan Zhao, Jingshu Wang.</p>
 </div>
 
 <div class="pkgdown-footer-right">

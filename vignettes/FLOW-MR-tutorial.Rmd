@@ -52,7 +52,7 @@ devtools::install_github("jingshuw/grapple")
 
 Next, we use `GRAPPLE` to preprocess the data following a three-sample Mendelian Randomization (MR) design. The sel.file is used to select genome-wide significant SNPs, the exp.file contains the exposures of interest, and the out.file contains the outcomes of interest. For more details, visit [GRAPPLE](https://github.com/jingshuw/GRAPPLE) on GitHub.
 
-In this example we use adult BMI from [GIANT](https://portals.broadinstitute.org/collaboration/giant/index.php/GIANT_consortium_data_files) and childhoood BMI from [EGG](http://egg-consortium.org) as selections files. We use childhood body size and bmi adult from [UK biobank](https://www.nealelab.is/uk-biobank) as exposures, and Breast Cancer from this [paper](https://pubmed.ncbi.nlm.nih.gov/29059683) as outcome. 
+In this example we use adult BMI from [GIANT](https://portals.broadinstitute.org/collaboration/giant/index.php/GIANT_consortium_data_files) and childhoood BMI from [EGG](http://egg-consortium.org) as selections files. We use childhood body BMI from [MOBA](https://www.fhi.no/en/ch/studies/moba/for-forskere-artikler/gwas-data-from-moba/), adult BMI from [UK biobank](https://www.nealelab.is/uk-biobank) as exposures, and Breast Cancer from this [paper](https://pubmed.ncbi.nlm.nih.gov/29059683) as outcome. 
 
 
 ```{r}
@@ -72,7 +72,7 @@ plink_refdat <- "~/Downloads/research/data_maf0.01_rs_ref/data_maf0.01_rs_ref"
 
 ## Use max.p.thres to decide the significance level of SNPs
 ## Use cal.cor = T to compute the noise correlation
-data.list <- GRAPPLE::getInput(sel.file, exp.file, out.file, plink_refdat, max.p.thres =0.01,
+data.list <- GRAPPLE::getInput(sel.file, exp.file, out.file, plink_refdat, max.p.thres =1e-3,
                                plink_exe = "~/Downloads/research/plink_mac_20210606/plink", cal.cor = T)
 ```
 
@@ -81,7 +81,7 @@ data.list <- GRAPPLE::getInput(sel.file, exp.file, out.file, plink_refdat, max.p
 To run FLOW-MR, we need to prepare two input files, `Gamma_hat` and `Sd_hat`. Also ensuring that the time order is reversed:
 
 
-Here, you can optionally provide `cor_mat`, which represents the shared noise correlation between GWAS summary statistics across traits. This is particularly useful when the GWAS summary statistics include overlapping samples. `GRAPPLE` estimates the noise correlation by first selecting non-significant SNPs (e.g., p-value > 0.5) and then computing the correlation between the estimated effect sizes. The default value is a diagonal matrix.
+Here, you can optionally provide `cor_mat`, a K by K matrix which represents the shared noise correlation between GWAS summary statistics across traits. This is particularly useful when the GWAS summary statistics include overlapping samples. `GRAPPLE` estimates the noise correlation by first selecting non-significant SNPs (e.g., p-value > 0.5) and then computing the correlation between the estimated effect sizes. The default value is a diagonal matrix.
 
 ```{r}
 dat <-data.list$data;
@@ -97,7 +97,7 @@ Sd_hat = rbind(dat$se_out1,
 
 cor_mat = data.list$cor.mat[3:1, 3:1]
 
-result = BayesMediation(Gamma_hat, Sd_hat, cor = cor_mat )
+result = BayesMediation(Gamma_hat, Sd_hat, cor = cor_mat, inv = TRUE)
 ```
 
 
@@ -111,21 +111,156 @@ In this step, we print the summary of direct effects, where each row corresponds
 print(result$summary)
 ```
 
-For example, `B[1,2]` represents the effect of adult BMI on breast cancer, `B[1,3]` represents the d`irect effect of childhood BMI on breast cancer, and  `B[2,3]` represents the direct effect of childhood BMI on adult BMI. The `ESS (Effective Sample Size) quantifies the number of independent samples, while `Rhat` (the Gelman-Rubin statistic) assesses convergence.
+In this summary, we provide the estimated posterior mean, variance, standard deviation, 2.5% quantile, median, 97.5% quantile, effective sample size (ESS), and Gelman-Rubin Rhat statistic for each parameter. The ESS quantifies the number of independent samples, while Rhat (the Gelman-Rubin statistic) assesses convergence. See [ESS](https://mc-stan.org/docs/2_18/reference-manual/effective-sample-size-section.html) and [Rhat](https://mc-stan.org/docs/2_18/reference-manual/notation-for-samples-chains-and-draws.html#split-r-hat-for-detecting-non-stationarity) for a detailed explanations of ESS and Rhat.
 
-If non-convergence issues arise (e.g., a large `Rhat` value), you can use the following command to generate a trace plot of the posterior samples:
+For the meaning of each parameter, `B[l, k]` represents the effect of the \(k\)-th latest trait on the \(l\)-th latest trait. For example:
+ `B[1, 2]` represents the effect of adult BMI on breast cancer;
+ `(B[1, 3]` represents the direct effect of childhood BMI on breast cancer;
+ `(B[2, 3]` represents the direct effect of childhood BMI on adult BMI. 
+
+See the figure below for a visualization.
 
 ```{r}
-FLOWMR::traceplot(result$raw, par = "B", ind = c(1,2))
+knitr::include_graphics("/Users/zixuanwu/Documents/GitHub/FLOW-MR/docs/EffectVisual.png")
+
 ```
 
-## Step 4
+
+For the meaning of other parameters, we assume the following priors in our manuscript:
+
+$$
+\alpha_{kj} \sim (1 - p_k)N(0, \sigma_{k0}^2) + p_k N(0, \sigma_{k1}^2)
+$$
+
+$$
+\beta_{kl} \sim N(0, \sigma^2), \quad l > k
+$$
+
+We also include the posterior summary of these parameters. In the summary, 
+ `sigma1[k]` represents the standard deviation of the slab component for trait \(k\),
+ `sigma0[k]` represents the standard deviation of the spike component for trait \(k\),
+ `p[k]` represents the proportion of the slab component, and `sigma` represents the standard deviation of \(B\).
+
+
+The effects should be considered as significant if its credible interval does not include 0. For example, here `B[2, 3]` and `B[1, 3]` are found to be  significant, while `B[1,2]` is not
+
+
+## Step 4 (Optional) Working with Raw outputs
+
+In most cases the summary table should provide sufficient information. But in some cases it could be useful to directly access the posterior samples, such as getting other quantiles. In these cases, you can follow the following procedure. 
+
+Here the raw posterior samples are stored in `result$raw`. First note that the default gibbs sampler is sampling  the total effects, instead of the direct effects matrix. One can use the following command to convert the total effects to the direct effects
+
+```{r}
+raw_direct = result_process(result$raw, K = 3)
+```
+
+
+In the Gibbs sampler we ran four chains in parallel. To get information of the i-th chain one can use the command `result$raw[[i]]`. Then for example `result$raw[[1]]$B` is a three dimensional array of dimension K times K times N, where K is the number of traits and N is the number of iterations; `result$raw[[1]]$sigma1`, `result$raw[[1]]$sigma0`, `result$raw[[1]]$p`  are three dimensional arrays of dimension K where K is the number of traits and N is the number of iterations. 
+
+To simplify the procedure, one can use the function `get_posterior_samples` in `FLOWMR` to extract  the posterior samples from all 4 chains for a particular parameter after a usered defined warmup period. The parameter must be one of "B", "sigma1", "sigma0", "sigma", "p".
+
+For example, here we extract the posterior samples for `B[1,3]` after 3000 warm-up periods
+
+```{r}
+post_B = get_posterior_samples(raw_direct, par = "B", ind = c(1,3), warmup = 3000)
+```
+
+We can check its quantiles
+
+```{r}
+quantile(post_B, c(0.025, .5, 0.975))
+```
+
+And we can also draw histogram for visualization
+
+```{r}
+hist(post_B, breaks = 30)
+```
+
+
+
+For `sigma1`, `sgima0` and `p`, the index argument have to be 1 dimensional. For example
+
+```{r}
+post_p = get_posterior_samples(raw_direct, par = "p", ind = 1, warmup = 3000)
+hist(post_p)
+```
+
+For `sigma`, the index argument should be NULL:
+
+```{r}
+post_sigma = get_posterior_samples(raw_direct, par = "sigma", ind = NULL, warmup = 3000)
+hist(post_sigma)
+```
+
+## Step 5 (Optional) MCMC diagnoistics.
+
+If non-convergence issues arise (e.g., an Rhat value greater than 1.1), you can generate a trace plot of the posterior samples using the following command:
+
+```{r}
+FLOWMR::traceplot(result$raw, par = "B", ind = c(1,2)) # for B
+```
+
+```{r}
+FLOWMR::traceplot(result$raw, par = "sigma1", ind = c(1)) # for sigma1, sigma0, p
+```
+
+Traceplot is a useful tool for MCMC convergence diagnostics. (See this in rstan for example [link](https://mc-stan.org/rstan/reference/stanfit-method-traceplot.html). In the traceplot each line should correspond to posterior samples from one MCMC chain. Non-convergence is observed when the posterior samples of the four chains do not look similar.  
+
+When there's convergence issue consider increase the number of iterations, or change the prior parameters. 
+
+
+## Step 5 Estimating path-wise / indirect effects
 
 To estimate path-wise effects, use the following command. For example, the code below evaluates the indirect effect of childhood BMI on breast cancer through adult BMI:
 
 ```{r}
 path_effect = indirect_effect(result$raw, K = 3, path = c(3,2,1),  warmup = 3000)
 print(path_effect)
+```
+The `path` parameter specifies the path you are interested it. In this case it is 3 -> 2 -> 1. Instead of 
+
+And function `indirect_effect` summarizes the posterior samples of all indirect effects. It outputs  array `df` of dimension K by K by 4, where the first two dimensions correspond to dimension of `B`, and the third dimension corresponds to mean, 2.5/% quantile, median, 97.5\% quantile respectively.
+
+
+```{r}
+ind_effect = indirect_effect(result$raw, K = 3, path = "all",  warmup = 3000)
+print(ind_effect)
+```
+
+We can also look at posterior inference for the total effects.
+
+
+```{r}
+tot_effect = total_effect(result$raw, K = 3, warmup = 3000)
+print(tot_effect)
+```
+
+Finally we show how we can extract posterior samples of total, indirect and path-wise effects
+
+```{r}
+tot_samples = get_total_samples(result$raw, 3, ind = c(1,3))
+hist(tot_samples)
+```
+
+
+```{r}
+path_samples = get_indirect_samples(result$raw, 3, path = c(3,2,1))
+hist(path_samples)
+```
+
+
+
+```{r}
+ind_samples = get_indirect_samples(result$raw, 3, path = "all", ind = c(1,3))
+hist(ind_samples)
+```
+
+Finally we can also get posterior samples of proportions of these effects relative to the total effects
+
+```{r}
+hist(pmin(abs(ind_samples / tot_samples), 1), breaks = 60)
 ```
 
 # Conclusion

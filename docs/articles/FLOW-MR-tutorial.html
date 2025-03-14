@@ -72,7 +72,7 @@ how to use the package step by step.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmpf3uGBd/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpYVc0Jt/downloaded_packages</span></span>
 <span></span>
 <span><span class="co"># Install FLOW-MR</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ZixuanWu1/FLOW-MR"</span><span class="op">)</span></span>
@@ -86,9 +86,9 @@ how to use the package step by step.</p>
 <span><span class="co">#&gt; RcppArmad... (14.0.2-1 -&gt; 14.2.3-1) [CRAN]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//Rtmpf3uGBd/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpYVc0Jt/downloaded_packages</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/Rtmpf3uGBd/remotes5de17e4f3ecf/ZixuanWu1-FLOW-MR-fd995e0/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpYVc0Jt/remotes6e32145d8194/ZixuanWu1-FLOW-MR-2165c20/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘FLOWMR’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * cleaning src</span></span>
@@ -158,7 +158,7 @@ outcome.</p>
 <span><span class="va">sel.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"~/Downloads/research/BMI-giant17eu.csv"</span>, <span class="st">"~/Downloads/research/bmi_child_egg.csv"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Exposure file</span></span>
-<span><span class="va">exp.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"~/Downloads/research/childhood_body_size.csv"</span>,<span class="st">"~/Downloads/research/BMI_adult.csv"</span> <span class="op">)</span></span>
+<span><span class="va">exp.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"~/Downloads/research/childhood_bmi_nat_comm_2019_8years"</span>,<span class="st">"~/Downloads/research/BMI_adult.csv"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Outcome file</span></span>
 <span><span class="va">out.file</span> <span class="op">&lt;-</span> <span class="st">"~/Downloads/research/Breast-Micha17erp.csv"</span></span>
@@ -168,16 +168,16 @@ outcome.</p>
 <span></span>
 <span><span class="co">## Use max.p.thres to decide the significance level of SNPs</span></span>
 <span><span class="co">## Use cal.cor = T to compute the noise correlation</span></span>
-<span><span class="va">data.list</span> <span class="op">&lt;-</span> <span class="fu">GRAPPLE</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GRAPPLE/man/getInput.html" class="external-link">getInput</a></span><span class="op">(</span><span class="va">sel.file</span>, <span class="va">exp.file</span>, <span class="va">out.file</span>, <span class="va">plink_refdat</span>, max.p.thres <span class="op">=</span><span class="fl">0.01</span>,</span>
+<span><span class="va">data.list</span> <span class="op">&lt;-</span> <span class="fu">GRAPPLE</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GRAPPLE/man/getInput.html" class="external-link">getInput</a></span><span class="op">(</span><span class="va">sel.file</span>, <span class="va">exp.file</span>, <span class="va">out.file</span>, <span class="va">plink_refdat</span>, max.p.thres <span class="op">=</span><span class="fl">1e-4</span>,</span>
 <span>                               plink_exe <span class="op">=</span> <span class="st">"~/Downloads/research/plink_mac_20210606/plink"</span>, cal.cor <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Marker candidates will not be obtained as number of risk factors k &gt; 1"</span></span>
 <span><span class="co">#&gt; [1] "loading data for selection: ~/Downloads/research/BMI-giant17eu.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data for selection: ~/Downloads/research/bmi_child_egg.csv ..."</span></span>
-<span><span class="co">#&gt; [1] "loading data from exposure: ~/Downloads/research/childhood_body_size.csv ..."</span></span>
+<span><span class="co">#&gt; [1] "loading data from exposure: ~/Downloads/research/childhood_bmi_nat_comm_2019_8years ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from exposure: ~/Downloads/research/BMI_adult.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from outcome: ~/Downloads/research/Breast-Micha17erp.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "Start clumping using PLINK ..."</span></span>
-<span><span class="co">#&gt; [1] "813 independent genetic instruments extracted. Done!"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "262 independent genetic instruments extracted. Done!"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-2-run-flow-mr">Step 2: Run FLOW-MR<a class="anchor" aria-label="anchor" href="#step-2-run-flow-mr"></a>
@@ -185,6 +185,14 @@ outcome.</p>
 <p>To run FLOW-MR, we need to prepare two input files,
 <code>Gamma_hat</code> and <code>Sd_hat</code>. Also ensuring that the
 time order is reversed:</p>
+<p>Here, you can optionally provide <code>cor_mat</code>, a K by K
+matrix which represents the shared noise correlation between GWAS
+summary statistics across traits. This is particularly useful when the
+GWAS summary statistics include overlapping samples.
+<code>GRAPPLE</code> estimates the noise correlation by first selecting
+non-significant SNPs (e.g., p-value &gt; 0.5) and then computing the
+correlation between the estimated effect sizes. The default value is a
+diagonal matrix.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span><span class="va">data.list</span><span class="op">$</span><span class="va">data</span>;</span>
 <span></span>
@@ -197,9 +205,11 @@ time order is reversed:</p>
 <span>               <span class="va">dat</span><span class="op">$</span><span class="va">se_exp2</span>,</span>
 <span>               <span class="va">dat</span><span class="op">$</span><span class="va">se_exp1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">data.list</span><span class="op">$</span><span class="va">cor.mat</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-03-11 16:49:11 CDT"</span></span>
-<span><span class="co">#&gt; [1] "2025-03-11 16:53:40 CDT"</span></span></code></pre></div>
+<span><span class="va">cor_mat</span> <span class="op">=</span> <span class="va">data.list</span><span class="op">$</span><span class="va">cor.mat</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">cor_mat</span> <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2025-03-14 09:59:59 CDT"</span></span>
+<span><span class="co">#&gt; [1] "2025-03-14 10:00:33 CDT"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-look-at-summary-of-direct-effects">Step 3: Look at summary of direct effects<a class="anchor" aria-label="anchor" href="#step-3-look-at-summary-of-direct-effects"></a>
@@ -209,42 +219,72 @@ corresponds to a parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   mean          var           sd         2.5%          50%</span></span>
-<span><span class="co">#&gt; B[1,2]    -0.116013046 5.583371e-03 0.0747219594 -0.262800074 -0.115312478</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.347019277 6.037359e-03 0.0777004472 -0.498291771 -0.346808605</span></span>
-<span><span class="co">#&gt; B[2,3]     1.487201135 2.560552e-03 0.0506018999  1.392991837  1.485736521</span></span>
-<span><span class="co">#&gt; sigma      0.625067022 2.527243e-02 0.1589730406  0.398531911  0.596673615</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.026199918 1.469070e-05 0.0038328453  0.020154152  0.025735267</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.017721715 2.127148e-05 0.0046121015  0.012128036  0.016718624</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.016862286 3.692366e-06 0.0019215531  0.013698771  0.016671738</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.004322491 4.941584e-07 0.0007029640  0.003038105  0.004286020</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.005956700 1.347499e-07 0.0003670830  0.005181163  0.005982763</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.003759160 3.405266e-08 0.0001845336  0.003396733  0.003758181</span></span>
-<span><span class="co">#&gt; p[1]       0.082793227 6.620370e-04 0.0257300806  0.038708235  0.080481305</span></span>
-<span><span class="co">#&gt; p[2]       0.037962714 7.740770e-04 0.0278222385  0.003715808  0.032109316</span></span>
-<span><span class="co">#&gt; p[3]       0.096484909 4.691556e-04 0.0216599990  0.058502077  0.094857995</span></span>
-<span><span class="co">#&gt;                  97.5%       ESS     Rhat</span></span>
-<span><span class="co">#&gt; B[1,2]     0.028453644 2930.9141 1.000934</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.195530998 3455.7901 1.000583</span></span>
-<span><span class="co">#&gt; B[2,3]     1.586598370  607.1188 1.008644</span></span>
-<span><span class="co">#&gt; sigma      1.016728378 9113.4746 1.000208</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.034875562 1062.9150 1.003855</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.029443998  912.5192 1.005317</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.021158295 1649.9614 1.000860</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.005767657  151.7050 1.014063</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.006603531  458.6894 1.010371</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.004118526 1229.9939 1.001423</span></span>
-<span><span class="co">#&gt; p[1]       0.138746490  543.0026 1.007833</span></span>
-<span><span class="co">#&gt; p[2]       0.107293435  334.8917 1.012843</span></span>
-<span><span class="co">#&gt; p[3]       0.143186812 1003.0891 1.001751</span></span></code></pre></div>
-<p>For example, <code>B[1,2]</code> represents the effect of adult BMI
-on breast cancer, <code>B[1,3]</code> represents the
-d<code>irect effect of childhood BMI on breast cancer, and</code>B[2,3]<code>represents the direct effect of childhood BMI on adult BMI. The</code>ESS
-(Effective Sample Size) quantifies the number of independent samples,
-while <code>Rhat</code> (the Gelman-Rubin statistic) assesses
-convergence.</p>
-<p>If non-convergence issues arise (e.g., a large <code>Rhat</code>
-value), you can use the following command to generate a trace plot of
-the posterior samples:</p>
+<span><span class="co">#&gt; B[1,2]    -0.003799960 1.499704e-02 0.1224623953 -0.242506035 -0.004762849</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.208916503 6.275352e-03 0.0792171177 -0.373170259 -0.207991179</span></span>
+<span><span class="co">#&gt; B[2,3]     0.665471334 8.893716e-03 0.0943064996  0.501847350  0.659909168</span></span>
+<span><span class="co">#&gt; sigma      0.421958927 1.197907e-02 0.1094489416  0.267911905  0.402421742</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.020422056 1.224979e-05 0.0034999697  0.014939265  0.019985341</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.027266894 7.479270e-05 0.0086482775  0.016470575  0.025459393</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.051531506 1.647916e-04 0.0128371172  0.032076821  0.049623151</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.004014919 9.450237e-07 0.0009721233  0.002465223  0.003908847</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.010903923 1.485353e-06 0.0012187504  0.008371434  0.010932066</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.015815887 3.905375e-06 0.0019762020  0.012244022  0.015725888</span></span>
+<span><span class="co">#&gt; p[1]       0.201621997 4.761344e-03 0.0690024897  0.085769722  0.196063901</span></span>
+<span><span class="co">#&gt; p[2]       0.034691299 8.198708e-04 0.0286333866  0.003505214  0.026866603</span></span>
+<span><span class="co">#&gt; p[3]       0.045608505 4.713271e-04 0.0217100695  0.012394625  0.042635409</span></span>
+<span><span class="co">#&gt;                  97.5%        ESS     Rhat</span></span>
+<span><span class="co">#&gt; B[1,2]     0.238086832  695.66401 1.002933</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.057080287  565.43372 1.005385</span></span>
+<span><span class="co">#&gt; B[2,3]     0.856221073   56.94984 1.000525</span></span>
+<span><span class="co">#&gt; sigma      0.689571449 4427.07302 1.004792</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.028565783 1249.14928 1.002086</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.049209360 3703.62082 1.000397</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.082478386 2669.62396 1.000203</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.006192147  261.61314 1.004128</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.013243683  487.88586 1.000888</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.020015323  640.43459 1.001528</span></span>
+<span><span class="co">#&gt; p[1]       0.354793861  616.29918 1.009205</span></span>
+<span><span class="co">#&gt; p[2]       0.109812666  878.61227 1.001145</span></span>
+<span><span class="co">#&gt; p[3]       0.095434215 1667.64568 1.000631</span></span></code></pre></div>
+<p>In this summary, we provide the estimated posterior mean, variance,
+standard deviation, 2.5% quantile, median, 97.5% quantile, effective
+sample size (ESS), and Gelman-Rubin Rhat statistic for each parameter.
+The ESS quantifies the number of independent samples, while Rhat (the
+Gelman-Rubin statistic) assesses convergence. See <a href="https://mc-stan.org/docs/2_18/reference-manual/effective-sample-size-section.html" class="external-link">ESS</a>
+and <a href="https://mc-stan.org/rstan/reference/Rhat.html" class="external-link">Rhat</a> for
+a detailed explanations of ESS and Rhat.</p>
+<p>For the meaning of each parameter, <code>B[l, k]</code> represents
+the effect of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>-th
+latest trait on the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>l</mi><annotation encoding="application/x-tex">l</annotation></semantics></math>-th
+latest trait. For example: - <code>B[1, 2]</code> represents the effect
+of adult BMI on breast cancer, - <code>(B[1, 3]</code> represents the
+direct effect of childhood BMI on breast cancer, - <code>(B[2, 3]</code>
+represents the direct effect of childhood BMI on adult BMI.</p>
+<p>For the meaning of other parameters, we assume the following priors
+in our manuscript:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mi>k</mi><mi>j</mi></mrow></msub><mo>∼</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mrow><mi>k</mi><mn>0</mn></mrow><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>p</mi><mi>k</mi></msub><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msubsup><mi>σ</mi><mrow><mi>k</mi><mn>1</mn></mrow><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\alpha_{kj} \sim (1 - p_k)N(0, \sigma_{k0}^2) + p_k N(0, \sigma_{k1}^2)
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mrow><mi>k</mi><mi>l</mi></mrow></msub><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mi>l</mi><mo>&gt;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">
+\beta_{kl} \sim N(0, \sigma^2), \quad l &gt; k
+</annotation></semantics></math></p>
+<p>We also include the posterior summary of these parameters. In the
+summary: - <code>sigma1[k]</code> represents the standard deviation of
+the slab component for trait
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>,
+- <code>sigma0[k]</code> represents the standard deviation of the spike
+component for trait
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>,
+- <code>p[k]</code> represents the proportion of the slab component, and
+- <code>\sigma</code> represents the standard deviation of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>.</p>
+<p>The effects should be considered as significant if its credible
+interval does not include 0.</p>
+<p>If non-convergence issues arise (e.g., a large Rhat value), you can
+generate a trace plot of the posterior samples using the following
+command:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">FLOWMR</span><span class="fu">::</span><span class="fu"><a href="../reference/traceplot.html">traceplot</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, par <span class="op">=</span> <span class="st">"B"</span>, ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
@@ -258,8 +298,8 @@ on breast cancer through adult BMI:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_effect</span> <span class="op">=</span> <span class="fu"><a href="../reference/indirect_effect.html">indirect_effect</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, K <span class="op">=</span> <span class="fl">3</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>,  warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">path_effect</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         Mean       2.5%        50%      97.5%</span></span>
-<span><span class="co">#&gt; 1 -0.1723755 -0.3898596 -0.1713084 0.04273244</span></span></code></pre></div>
+<span><span class="co">#&gt;            Mean       2.5%          50%    97.5%</span></span>
+<span><span class="co">#&gt; 1 -7.288468e-05 -0.1631804 -0.003021919 0.177939</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -275,7 +315,7 @@ details, refer to the package documentation.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jingshu Wang, Ethan Lewis, Zixuan Wu.</p>
+  <p>Developed by Zixuan Wu, Ethan Lewis, Qingyuan Zhao, Jingshu Wang.</p>
 </div>
 
 <div class="pkgdown-footer-right">

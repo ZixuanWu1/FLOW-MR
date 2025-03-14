@@ -59,5 +59,5 @@ computed by second stage (included if indirect = T and  second = T)
 \item{raw_second} The unprocessed output from the second stage (included if raw = T and second = T)
 }
 \description{
-Bayes approach for MR Mediation model.
+Bayes approach for FLOW MR model.
 }
