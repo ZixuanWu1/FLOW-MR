@@ -13,6 +13,8 @@
 
 get_posterior_samples  = function(raw, par, ind = NULL, warmup = 3000) {
   m = length(raw)
+  raw = result_process(raw, K)
+  
   len = utils::tail(dim(raw[[1]][["B"]]), n = 1)
   
   

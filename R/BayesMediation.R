@@ -32,7 +32,7 @@
 #' 
 #' @export
 BayesMediation = function(Gamma_hat, Sd_hat, init = "Random", iter = 6000,
-                     warmup = 3000, second = F,  inv = FALSE,
+                     warmup = 3000, second = F,  inv = T,
                      cor = NULL, Raw = T, total = F, indirect = F) {
   registerDoParallel(cores=4)
   P = length(Gamma_hat[1,])
