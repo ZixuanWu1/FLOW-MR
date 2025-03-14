@@ -121,7 +121,7 @@ For the meaning of each parameter, `B[l, k]` represents the direct effect of the
 See the figure below for a visualization.
 
 ```{r}
-knitr::include_graphics("/Users/zixuanwu/Documents/GitHub/FLOW-MR/docs/EffectVisual.png")
+knitr::include_graphics("https://zixuanwu1.github.io/FLOW-MR/articles/FLOW-MR-tutorial_files/figure-html/EffectVisual.png")
 
 ```
 
@@ -205,7 +205,7 @@ The traceplot is a useful tool for diagnosing MCMC convergence (See this in rsta
 If convergence issues arise, consider increasing the number of iterations or adjusting the prior parameters
 
 
-## Step 5 Estimating path-wise / indirect effects
+## Step 6 Estimating path-wise / indirect effects
 
 To estimate path-wise effects, use the following command. For example, the function `indirect_effect` evaluates the indirect effect of childhood BMI on breast cancer through adult BMI:
 
