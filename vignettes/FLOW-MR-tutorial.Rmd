@@ -55,9 +55,6 @@ Next, we use `GRAPPLE` to preprocess the data following a three-sample Mendelian
 
 In this example we use adult BMI from [GIANT](https://portals.broadinstitute.org/collaboration/giant/index.php/GIANT_consortium_data_files) and childhoood BMI from [EGG](http://egg-consortium.org) as selections files. We use childhood body BMI from [MOBA](https://www.fhi.no/en/ch/studies/moba/for-forskere-artikler/gwas-data-from-moba/), adult BMI from [UK biobank](https://www.nealelab.is/uk-biobank) as exposures, and Breast Cancer from this [paper](https://pubmed.ncbi.nlm.nih.gov/29059683) as outcome. One can download the traits from this [link](https://www.dropbox.com/scl/fo/mq6zge2zy83a7jzhsiyqb/AGNJ31iDKQHcKk0xQ5JrbpU?rlkey=fnbggfm1gubwxunuw77ns81tb&st=m8dcrh92&dl=0). 
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = "~/Downloads/research/")
-```
 
 ```{r}
 library(GRAPPLE)
