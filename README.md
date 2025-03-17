@@ -8,6 +8,19 @@ Here we give a brief description of the method. Check [tutorial](https://ZixuanW
 
 For the code reproducing the results in the manuscript, please visit [link](https://github.com/ZixuanWu1/FLOW-MR-PAPER).
 
+## Hardware Requirements
+
+The FLOWMR package requires a standard computer with sufficient RAM to support in-memory operations. A minimum of four CPU cores is recommended for parallel execution.
+
+## Operating System and Software Requirements
+
+The package was developed and tested on macOS Sonoma 14.0.
+
+
+It is expected to be compatible with both Windows and macOS. Before using FLOWMR, users should install the necessary dependencies from CRAN, as specified in the DESCRIPTION file.
+
+
+
 ## Installation
 
 To run the package, you might need to first install RCpp from CRAN
@@ -22,6 +35,8 @@ Then the package can be installed in R from this Github repository:
 library(devtools)
 install_github("ZixuanWu1/FLOW-MR")
 ```
+
+The installation should take no more than 5 minuts on a normal computer 
 
 ## Basic Usage
 
