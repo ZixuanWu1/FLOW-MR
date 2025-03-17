@@ -657,3 +657,262 @@ List gibbs_sampler(arma::mat& Y,
 
 
 
+
+//' @keywords internal
+ //' 
+ vec find_ind(const vec& num_traits, const int& M ){
+   int K = num_traits.n_elem;
+   vec indices = zeros(M + 1);
+   int n = 0;
+   for (int i = 0; i < K; i ++){
+     for (int j = n; j < n + num_traits(i); j ++ ){
+       indices(j) = n + num_traits(i);
+     }
+     n = n + num_traits(i);
+   }
+   indices(M ) = M - num_traits(K-1);
+   return indices;
+ }
+
+//' @keywords internal
+ //' 
+ mat row_to_Beta(const vec & beta, const vec& indices, const int& M){
+   mat B = zeros(M, M);
+   int n = 0;
+   for (int i = 0; i < indices(M); i ++){
+     for (int j = indices(i); j < M; j ++){
+       B(i, j) = beta(n);
+       n ++;
+     }
+   }
+   return B;
+ }
+
+
+
+
+
+
+//' @keywords internal
+ //' 
+ mat BLstack(const vec& v, const vec& indices, const int& n_row) {
+   int M = indices.n_elem - 1;
+   mat A = zeros( n_row , M);
+   int rowstart = 0;
+   for (int j = 0; j < indices(M) ; j++) {
+     int len = (M - indices(j)) ;
+     vec subvec = v.tail(len);
+     A( rowstart, j, size(len, 1) ) = subvec;
+     rowstart +=  len;
+   }
+   return A;
+ }
+
+
+
+
+
+//' @keywords internal
+ //' 
+ mat BLstackMatrix(const mat& A, const vec& indices, const int& n_row) {
+   const int M = A.n_rows;
+   const int P = A.n_cols;
+   mat A_tilde = mat(n_row, M * P);
+   for (int j=0; j < P; j++) {
+     A_tilde.cols(j*M, (j+1)*M - 1) = BLstack(A.col(j), indices, n_row);
+   }
+   return A_tilde;
+ }
+
+
+
+
+
+
+
+//' @keywords internal
+ //' 
+ mat sample_B_with_corr_new(const mat& Y, const mat& SD, mat& A, double& sigma,
+                            int& n,
+                            const mat& Lambda_inv, const vec& indices, const int& n_row){
+   //this function is actually slower than R but may be useful if we implement the whole sampling loop in C++
+   int M = Y.n_rows;
+   
+   mat A_tilde = BLstackMatrix(A, indices, n_row);
+   
+   mat C = inv_sympd(A_tilde * Lambda_inv * A_tilde.t() + 
+     (1/square(sigma)) * eye(n_row, n_row));
+   vec m = C * A_tilde * Lambda_inv* vectorise(Y - A);
+   vec B_ut = mvnrnd(m, C);
+   mat B = row_to_Beta(B_ut, indices, M);
+   
+   
+   return B;
+ }
+
+
+
+//' Perform Gibbs sampling for mediation MR with multivariate traits
+ //' 
+ //' Model is that Y = (I+B)A + noise
+ //' @param Y KxP arma::matrix of GWAS marginal associations
+ //' @param Sd_hat KxP arma::matrix of GWAS std errors
+ //' @param trait_corr KxK arma::matrix of correlation of noises.
+ //' @param N number of samples to obtain
+ //' @param B initial value of B arma::matrix
+ //' @param sigma Initial value of prior std deviation for values of B
+ //' @param sigma1 K-arma::vector of Initial values of prior slab SDs for each trait's pleiotropy
+ //' @param sigma0 K-arma::vector of Initial values of prior splike SDs for each trait's pleiotropy
+ //' @param p K-arma::vector of initial values for p, which is slab probability for mixture
+ //' @param A KxP arma::matrix of initial values for A (ignored)
+ //' @param Z KxP arma::matrix of initial values for Z (ignored), which is latent varaible indicating if A[i,j] comes from slab
+ //' @param alpha_B Shape parameter of InvGamma prior for sigma (for B)
+ //' @param beta_B Scale parameter of InvGamma prior for sigma (for B)
+ //' @param alpha_0 K-arma::vector Shape parameter of InvGamma prior for sigma0 (Spike)
+ //' @param alpha_1 K-arma::vector Shape parameter of InvGamma prior for sigma0 (Slab)
+ //' @param beta_0 K-arma::vector Scale parameter of InvGamma prior for sigma0 (Spike)
+ //' @param beta_1 K-arma::vector Scale parameter of InvGamma prior for sigma0 (Slab)
+ //' @param a K-arma::vector First parameter of beta prior for p
+ //' @param b K-arma::vector Second parameter of beta prior for p
+ //' @param Lambda3 Precomputed covariance matrix
+ //' @param Lambda_inv3 Precomputed inverse covariance matrix
+ //' @export
+ // [[Rcpp::export]]
+ List gibbs_sampler_new(arma::mat& Y,
+                        arma::mat& Sd_hat,
+                        arma::mat& trait_corr,
+                        int& N,
+                        arma::mat& B,
+                        double& sigma,
+                        arma::vec& sigma1,
+                        arma::vec& sigma0,
+                        arma::vec& p,
+                        arma::mat& A,
+                        arma::umat& Z,
+                        double& alpha_B,
+                        double& beta_B,
+                        arma::vec& alpha_0,
+                        arma::vec& alpha_1,
+                        arma::vec& beta_0,
+                        arma::vec& beta_1,
+                        arma::vec& a,
+                        arma::vec& b,
+                        arma::mat& Lambda3,
+                        arma::mat& Lambda_inv3,
+                        arma::vec& num_traits
+ ){
+   
+   
+   
+   const auto P = Y.n_cols;
+   const auto M = Y.n_rows;
+   const vec indices = find_ind(num_traits, M);
+   
+   int n_row = 0;
+   for(int i = 0; i < indices(M); i++){
+     n_row += M - indices(i);
+   }
+   
+   
+   cube B_samples = cube(M, M, N);
+   vec sigma_samples = vec(N);
+   mat sigma1_samples = mat(M, N);
+   mat sigma0_samples = mat(M, N);
+   mat p_samples = mat(M, N);
+   ucube Z_samples;
+   Z_samples.set_size(M, P, N);
+   cube A_samples = cube(M, P, N);
+   
+   //store initialization:
+   int n=0;;
+   B_samples.slice(n) = B;
+   sigma_samples(n) = sigma;
+   sigma1_samples.col(n) = sigma1;
+   sigma0_samples.col(n) = sigma0;
+   p_samples.col(n) = p;
+   Z_samples.slice(n) = Z;
+   A_samples.slice(n) = A;
+   
+   //this is just for debugging:
+   Environment env = Environment::global_env();
+   
+   
+   //iterate for each sample:
+   for(n=1; n<N; n++){
+     
+     
+     //First update z
+     
+     //Compute priors
+     vec priors =  ones(1<<M);
+     //vector of priors for each choice of z
+     for (int z=0; z < (1<<M); z++){
+       //prior is equal to product of Bernoulli probabilities with
+       //parameters p_i
+       for (int i=0; i<M; i++){
+         priors(z) *= (z & (1<<i)) ? p(i) : (1 - p(i));
+       }
+     }
+     
+     
+     
+     sample_Z_and_A_CPP_with_corr(Y, Lambda3, Lambda_inv3, B, sigma0, sigma1, priors, A, Z);
+     
+     
+     //Then update p
+     for(int i=0; i<M; i++){
+       //Sample two Gamma rvs to get Beta rv: B = G_1 / (G_1 + G_2)
+       //See en.wikipedia.org/wiki/Beta_distribution#Computational_methods (accessed 3/31/22)
+       double X = randg(distr_param(a(i) + sum(Z.row(i)), 1.0));
+       double Y = randg(distr_param(b(i) + P - sum(Z.row(i)), 1.0));
+       p(i) =  X / (X+Y);
+     }
+     
+     
+     //And update sigma1 and sigma0
+     for(int i=0; i<M; i++){
+       //Compute the parameters for sigma1 (% is element wise mult)
+       double alpha1_par = alpha_1(i) + sum(Z.row(i))/2;
+       double beta1_par = beta_1(i) +  sum( square(A.row(i) % Z.row(i) ))/2;
+       
+       //Compute the parameters for sigma0
+       double alpha0_par =  alpha_0(i) + (P - sum(Z.row(i)) )/2;
+       double beta0_par= beta_0(i) +  sum ( square(A.row(i) % ( 1 - Z.row(i))) )/2;
+       
+       //Update sigma1 and sigma0
+       sigma1(i) = sqrt(1/randg(distr_param(alpha1_par, 1/beta1_par)));
+       sigma0(i) = sqrt(1/randg(distr_param(alpha0_par, 1/beta0_par)));
+     }
+     
+     
+     ////Then update B
+     B = sample_B_with_corr_new(Y, Sd_hat, A, sigma, n, Lambda_inv3, indices, n_row);
+     
+     //Finally update sigma
+     sigma = sqrt(1/randg(distr_param(alpha_B + n_row , 1/(beta_B + square(norm(B, "fro"))/2))));
+     
+     //Now store samples:
+     B_samples.slice(n) = B;
+     sigma_samples(n) = sigma;
+     sigma1_samples.col(n) = sigma1;
+     sigma0_samples.col(n) = sigma0;
+     p_samples.col(n) = p;
+     Z_samples.slice(n) = Z;
+     A_samples.slice(n) = A;
+     
+     
+   }
+   
+   return Rcpp::List::create(Rcpp::Named("A") = A_samples,
+                             Rcpp::Named("Z") = Z_samples,
+                             Rcpp::Named("sigma1") = sigma1_samples,
+                             Rcpp::Named("sigma0") = sigma0_samples,
+                             Rcpp::Named("sigma") = sigma_samples,
+                             Rcpp::Named("B") = B_samples,
+                             Rcpp::Named("p") = p_samples);
+   
+ }
+
+
+
+

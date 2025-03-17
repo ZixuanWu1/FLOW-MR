@@ -4,12 +4,14 @@
 \alias{get_posterior_samples}
 \title{Posterior samples}
 \usage{
-get_posterior_samples(raw, par, ind = NULL, warmup = 3000)
+get_posterior_samples(raw, par, K, ind = NULL, warmup = 3000)
 }
 \arguments{
 \item{raw}{raw results}
 
 \item{par}{parameter of interets}
+
+\item{K}{number of traits}
 
 \item{ind}{index of the parameter}
 

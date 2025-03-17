@@ -53,6 +53,24 @@ NULL
 #' 
 NULL
 
+#' @keywords internal
+NULL
+
+#' @keywords internal
+NULL
+
+#' @keywords internal
+NULL
+
+#' @keywords internal
+NULL
+
+#' @keywords internal
+NULL
+
+#' Perform Gibbs sampling for mediation MR with multivariate traits
+NULL
+
 #' Perform Gibbs sampling for mediation MR with correlation
 #' 
 #' Model is that Y = (I+B)A + noise
@@ -107,5 +125,9 @@ gibbs_sampler_with_corr <- function(Y, Sd_hat, trait_corr, N, B, sigma, sigma1, 
 #' @export
 gibbs_sampler <- function(Y, Sd_hat, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b) {
     .Call(`_FLOWMR_gibbs_sampler`, Y, Sd_hat, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b)
+}
+
+gibbs_sampler_new <- function(Y, Sd_hat, trait_corr, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b, Lambda3, Lambda_inv3, num_traits) {
+    .Call(`_FLOWMR_gibbs_sampler_new`, Y, Sd_hat, trait_corr, N, B, sigma, sigma1, sigma0, p, A, Z, alpha_B, beta_B, alpha_0, alpha_1, beta_0, beta_1, a, b, Lambda3, Lambda_inv3, num_traits)
 }
 
