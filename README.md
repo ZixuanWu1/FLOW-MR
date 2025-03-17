@@ -6,6 +6,8 @@ For details of the FLOW-MR framework, please refer to our [manuscript](https://w
 
 Here we give a brief description of the method. Check [tutorial](https://ZixuanWu1.github.io/FLOW-MR/articles/FLOW-MR-tutorial.html) for the complete workflow.
 
+For the code reproducing the results in the manuscript, please visit [link](https://github.com/ZixuanWu1/FLOW-MR-PAPER).
+
 ## Installation
 
 To run the package, you might need to first install RCpp from CRAN
