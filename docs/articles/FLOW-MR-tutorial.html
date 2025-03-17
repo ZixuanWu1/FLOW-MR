@@ -69,10 +69,10 @@ how to use the package step by step.</p>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install devtools if not installed</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpcEPzh6/downloaded_packages</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"devtools"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
 <span></span>
 <span><span class="co"># Install FLOW-MR</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ZixuanWu1/FLOW-MR"</span><span class="op">)</span></span>
@@ -86,9 +86,9 @@ how to use the package step by step.</p>
 <span><span class="co">#&gt; RcppArmad... (14.0.2-1 -&gt; 14.2.3-1) [CRAN]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpcEPzh6/downloaded_packages</span></span>
+<span><span class="co">#&gt;  /var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T//RtmpL9P6lU/downloaded_packages</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpcEPzh6/remotesa4275d259a15/ZixuanWu1-FLOW-MR-8310e6b/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/private/var/folders/1p/kyg0zmtx4gdg27q_5x4d78fc0000gn/T/RtmpL9P6lU/remotes17574441c9acc/ZixuanWu1-FLOW-MR-888679f/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘FLOWMR’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * cleaning src</span></span>
@@ -100,12 +100,26 @@ how to use the package step by step.</p>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at BayesMediation.Rd:56:30</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at BayesMediation.Rd:58:17</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at BayesMediation.Rd:59:18</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:57:21</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:58:22</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:59:26</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:61:27</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:63:29</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:65:30</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:67:17</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at MultivariateMediation.Rd:68:18</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:64:9</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:65:9</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:66:14</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:67:14</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:68:10</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper.Rd:69:13</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:71:9</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:72:9</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:73:14</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:74:14</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:75:10</span></span>
+<span><span class="co">#&gt; Warning: bad markup (extra space?) at gibbs_wrapper_multivariate.Rd:76:13</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at summary_gibbs.Rd:24:12</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at summary_gibbs.Rd:25:16</span></span>
 <span><span class="co">#&gt; Warning: bad markup (extra space?) at summary_gibbs.Rd:26:10</span></span>
@@ -159,7 +173,7 @@ One can download the traits from this <a href="https://www.dropbox.com/scl/fo/mq
 <span><span class="va">sel.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BMI-giant17eu.csv"</span>, <span class="st">"BMIchild-egg15.csv"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Exposure file</span></span>
-<span><span class="va">exp.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"BMI8year_moba19"</span>,<span class="st">"BMIadult-ukb.csv"</span> <span class="op">)</span></span>
+<span><span class="va">exp.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"BMI8year-moba19"</span>,<span class="st">"BMIadult-ukb.csv"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Outcome file</span></span>
 <span><span class="va">out.file</span> <span class="op">&lt;-</span> <span class="st">"Breast-Micha17erp.csv"</span></span>
@@ -174,7 +188,7 @@ One can download the traits from this <a href="https://www.dropbox.com/scl/fo/mq
 <span><span class="co">#&gt; [1] "Marker candidates will not be obtained as number of risk factors k &gt; 1"</span></span>
 <span><span class="co">#&gt; [1] "loading data for selection: BMI-giant17eu.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data for selection: BMIchild-egg15.csv ..."</span></span>
-<span><span class="co">#&gt; [1] "loading data from exposure: BMI8year_moba19 ..."</span></span>
+<span><span class="co">#&gt; [1] "loading data from exposure: BMI8year-moba19 ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from exposure: BMIadult-ukb.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "loading data from outcome: Breast-Micha17erp.csv ..."</span></span>
 <span><span class="co">#&gt; [1] "Start clumping using PLINK ..."</span></span>
@@ -210,8 +224,8 @@ diagonal matrix.</p>
 <span><span class="va">cor_mat</span> <span class="op">=</span> <span class="va">data.list</span><span class="op">$</span><span class="va">cor.mat</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">result</span> <span class="op">=</span> <span class="fu"><a href="../reference/BayesMediation.html">BayesMediation</a></span><span class="op">(</span><span class="va">Gamma_hat</span>, <span class="va">Sd_hat</span>, cor <span class="op">=</span> <span class="va">cor_mat</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-03-14 17:51:17 CDT"</span></span>
-<span><span class="co">#&gt; [1] "2025-03-14 17:53:00 CDT"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2025-03-17 17:48:54 CDT"</span></span>
+<span><span class="co">#&gt; [1] "2025-03-17 17:50:38 CDT"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-look-at-summary-of-direct-effects">Step 3: Look at summary of direct effects<a class="anchor" aria-label="anchor" href="#step-3-look-at-summary-of-direct-effects"></a>
@@ -220,34 +234,34 @@ diagonal matrix.</p>
 corresponds to a parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">summary</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   mean          var           sd         2.5%         50%</span></span>
-<span><span class="co">#&gt; B[1,2]     0.154338457 1.701102e-02 0.1304263188 -0.086087835  0.14881437</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.404274992 2.928917e-02 0.1711407781 -0.769336088 -0.39693116</span></span>
-<span><span class="co">#&gt; B[2,3]     0.708872390 1.017322e-02 0.1008623577  0.540054384  0.69767799</span></span>
-<span><span class="co">#&gt; sigma      0.431804552 1.259795e-02 0.1122405760  0.273221671  0.41221633</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.025784198 1.999004e-05 0.0044710217  0.018924747  0.02514419</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.025985400 6.572242e-05 0.0081069366  0.015846379  0.02422156</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.047919378 1.043851e-04 0.0102169049  0.032046730  0.04657167</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.004181953 7.137785e-07 0.0008448541  0.002756738  0.00411279</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.008421607 7.256956e-07 0.0008518777  0.006686699  0.00846911</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.011072690 1.571560e-06 0.0012536189  0.008650895  0.01104732</span></span>
-<span><span class="co">#&gt; p[1]       0.098527271 1.313597e-03 0.0362435839  0.040041969  0.09461229</span></span>
-<span><span class="co">#&gt; p[2]       0.021864833 2.790611e-04 0.0167051229  0.002539565  0.01770998</span></span>
-<span><span class="co">#&gt; p[3]       0.042887034 2.604631e-04 0.0161388684  0.017589026  0.04098024</span></span>
-<span><span class="co">#&gt;                  97.5%        ESS     Rhat</span></span>
-<span><span class="co">#&gt; B[1,2]     0.430083146  406.87558 1.005156</span></span>
-<span><span class="co">#&gt; B[1,3]    -0.098941245  332.50236 1.007283</span></span>
-<span><span class="co">#&gt; B[2,3]     0.916522397   52.86458 1.019953</span></span>
-<span><span class="co">#&gt; sigma      0.713316725 4166.44315 1.001421</span></span>
-<span><span class="co">#&gt; sigma1[1]  0.036234355 1347.63199 1.001091</span></span>
-<span><span class="co">#&gt; sigma1[2]  0.046489730 3445.32948 1.001156</span></span>
-<span><span class="co">#&gt; sigma1[3]  0.071524509  969.57039 1.003497</span></span>
-<span><span class="co">#&gt; sigma0[1]  0.006013198  179.94048 1.010580</span></span>
-<span><span class="co">#&gt; sigma0[2]  0.009987379  317.68482 1.005758</span></span>
-<span><span class="co">#&gt; sigma0[3]  0.013586208  338.57316 1.005761</span></span>
-<span><span class="co">#&gt; p[1]       0.179090509  647.77104 1.002486</span></span>
-<span><span class="co">#&gt; p[2]       0.064461483  822.56019 1.002188</span></span>
-<span><span class="co">#&gt; p[3]       0.080138057 1634.96614 1.000759</span></span></code></pre></div>
+<span><span class="co">#&gt;                   mean          var           sd         2.5%          50%</span></span>
+<span><span class="co">#&gt; B[1,2]     0.158571124 1.708075e-02 0.1306933512 -0.088594706  0.155708787</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.416820534 3.037425e-02 0.1742821007 -0.772970801 -0.408581119</span></span>
+<span><span class="co">#&gt; B[2,3]     0.729903282 8.361712e-03 0.0914423953  0.564416591  0.726111975</span></span>
+<span><span class="co">#&gt; sigma      0.432940868 1.258926e-02 0.1122018645  0.273914991  0.412901419</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.025897252 1.995543e-05 0.0044671501  0.018968703  0.025298456</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.025400411 5.691362e-05 0.0075441115  0.015802744  0.023753648</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.046966628 9.573373e-05 0.0097843616  0.032002343  0.045542140</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.004279803 7.322883e-07 0.0008557385  0.002882453  0.004194274</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.008336840 7.043863e-07 0.0008392773  0.006698575  0.008356154</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.010865672 1.488539e-06 0.0012200570  0.008584134  0.010815020</span></span>
+<span><span class="co">#&gt; p[1]       0.096893667 1.223057e-03 0.0349722279  0.039493403  0.093387522</span></span>
+<span><span class="co">#&gt; p[2]       0.023916549 3.255310e-04 0.0180424783  0.002547653  0.019647269</span></span>
+<span><span class="co">#&gt; p[3]       0.042358001 2.525140e-04 0.0158906899  0.017389480  0.040189888</span></span>
+<span><span class="co">#&gt;                  97.5%        ESS      Rhat</span></span>
+<span><span class="co">#&gt; B[1,2]     0.421482632  496.41018 1.0033982</span></span>
+<span><span class="co">#&gt; B[1,3]    -0.086527013  311.31244 1.0034254</span></span>
+<span><span class="co">#&gt; B[2,3]     0.928726204   60.24373 1.0086724</span></span>
+<span><span class="co">#&gt; sigma      0.702160361 4455.55279 1.0009391</span></span>
+<span><span class="co">#&gt; sigma1[1]  0.036117189 1364.89387 1.0042282</span></span>
+<span><span class="co">#&gt; sigma1[2]  0.044571476 2874.80598 0.9998832</span></span>
+<span><span class="co">#&gt; sigma1[3]  0.069936393 1211.18638 1.0008464</span></span>
+<span><span class="co">#&gt; sigma0[1]  0.006155495  178.22450 1.0449098</span></span>
+<span><span class="co">#&gt; sigma0[2]  0.009872035  364.44844 1.0050532</span></span>
+<span><span class="co">#&gt; sigma0[3]  0.013334242  371.98046 1.0006414</span></span>
+<span><span class="co">#&gt; p[1]       0.173356366  648.51063 1.0095333</span></span>
+<span><span class="co">#&gt; p[2]       0.070259503  779.62068 1.0019857</span></span>
+<span><span class="co">#&gt; p[3]       0.079158536 1734.45765 1.0011530</span></span></code></pre></div>
 <p>In this summary, we provide the estimated posterior mean, variance,
 standard deviation, 2.5% quantile, median, 97.5% quantile, effective
 sample size (ESS), and Gelman-Rubin Rhat statistic for each parameter.
@@ -321,7 +335,7 @@ a user-defined warm-up period. The parameter must be one of “B”,
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">post_B</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">.5</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        2.5%         50%       97.5% </span></span>
-<span><span class="co">#&gt; -0.76933609 -0.39693116 -0.09894124</span></span></code></pre></div>
+<span><span class="co">#&gt; -0.77297080 -0.40858112 -0.08652701</span></span></code></pre></div>
 <p>And we can also draw a histogram of it for visualization:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_B</span>, breaks <span class="op">=</span> <span class="fl">30</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of direct effects of X3 on X1"</span><span class="op">)</span></span></code></pre></div>
@@ -330,12 +344,12 @@ a user-defined warm-up period. The parameter must be one of “B”,
 index argument have to be 1 dimensional. For example</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">post_p</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_posterior_samples.html">get_posterior_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, par <span class="op">=</span> <span class="st">"p"</span>, K <span class="op">=</span> <span class="fl">3</span>, ind <span class="op">=</span> <span class="fl">1</span>, warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_p</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of p1"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_p</span>,  breaks <span class="op">=</span> <span class="fl">30</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of p1"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>For <code>sigma</code>, the index argument should be NULL:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">post_sigma</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_posterior_samples.html">get_posterior_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, par <span class="op">=</span> <span class="st">"sigma"</span>, K <span class="op">=</span> <span class="fl">3</span>, ind <span class="op">=</span> <span class="cn">NULL</span>, warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_sigma</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of sigma"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">post_sigma</span>,  breaks <span class="op">=</span> <span class="fl">30</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of sigma"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -367,8 +381,8 @@ indirect effect of childhood BMI on breast cancer through adult BMI:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_effect</span> <span class="op">=</span> <span class="fu"><a href="../reference/indirect_effect.html">indirect_effect</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, K <span class="op">=</span> <span class="fl">3</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>,  warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">path_effect</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        Mean        2.5%      50%     97.5%</span></span>
-<span><span class="co">#&gt; 1 0.1145172 -0.05706925 0.102001 0.3561111</span></span></code></pre></div>
+<span><span class="co">#&gt;        Mean        2.5%       50%     97.5%</span></span>
+<span><span class="co">#&gt; 1 0.1197818 -0.06143416 0.1103945 0.3452347</span></span></code></pre></div>
 <p>The <code>path</code> parameter specifies the path you are interested
 it. In this case it is 3 -&gt; 2 -&gt; 1.</p>
 <p>This can also be done by first extracting the posterior samples of
@@ -378,7 +392,7 @@ it. In this case it is 3 -&gt; 2 -&gt; 1.</p>
 <span><span class="va">post_B2</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_posterior_samples.html">get_posterior_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, par <span class="op">=</span> <span class="st">"B"</span>, K <span class="op">=</span> <span class="fl">3</span>, ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, warmup <span class="op">=</span> <span class="fl">3000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">post_B1</span> <span class="op">*</span> <span class="va">post_B2</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">.5</span>, <span class="fl">.975</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        2.5%         50%       97.5% </span></span>
-<span><span class="co">#&gt; -0.05706925  0.10200105  0.35611112</span></span></code></pre></div>
+<span><span class="co">#&gt; -0.06143416  0.11039454  0.34523474</span></span></code></pre></div>
 <p>Alternatively, instead of focusing on a specific path, you can
 estimate the sum of effects from all non-direct paths. The function
 <code>indirect_effect</code> summarizes the posterior samples of all
@@ -392,28 +406,28 @@ dimensions of <code>B</code>, the third dimension contains the mean,
 <span><span class="co">#&gt; , , Mean</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.1145172</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.1197818</span></span>
 <span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.025</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1] [,2]        [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 -0.05706925</span></span>
+<span><span class="co">#&gt; [1,]    0    0 -0.06143416</span></span>
 <span><span class="co">#&gt; [2,]    0    0  0.00000000</span></span>
 <span><span class="co">#&gt; [3,]    0    0  0.00000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.5</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      [,1] [,2]     [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.102001</span></span>
-<span><span class="co">#&gt; [2,]    0    0 0.000000</span></span>
-<span><span class="co">#&gt; [3,]    0    0 0.000000</span></span>
+<span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.1103945</span></span>
+<span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
+<span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.975</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1] [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0    0 0.3561111</span></span>
+<span><span class="co">#&gt; [1,]    0    0 0.3452347</span></span>
 <span><span class="co">#&gt; [2,]    0    0 0.0000000</span></span>
 <span><span class="co">#&gt; [3,]    0    0 0.0000000</span></span></code></pre></div>
 <p>We can also examine the posterior inference for the total effects,
@@ -424,29 +438,29 @@ which represent the sum of the direct and indirect effects.</p>
 <span><span class="co">#&gt; , , Mean</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.1543385 -0.2897578</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.7088724</span></span>
+<span><span class="co">#&gt; [1,]    0 0.1585711 -0.2970388</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.7299033</span></span>
 <span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.025</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]        [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 -0.08608784 -0.4663309</span></span>
-<span><span class="co">#&gt; [2,]    0  0.00000000  0.5400544</span></span>
+<span><span class="co">#&gt; [1,]    0 -0.08859471 -0.4794140</span></span>
+<span><span class="co">#&gt; [2,]    0  0.00000000  0.5644166</span></span>
 <span><span class="co">#&gt; [3,]    0  0.00000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.5</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      [,1]      [,2]      [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.1488144 -0.286424</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.697678</span></span>
-<span><span class="co">#&gt; [3,]    0 0.0000000  0.000000</span></span>
+<span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
+<span><span class="co">#&gt; [1,]    0 0.1557088 -0.2931256</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.7261120</span></span>
+<span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; , , Quantile_0.975</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      [,1]      [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.4300831 -0.1288943</span></span>
-<span><span class="co">#&gt; [2,]    0 0.0000000  0.9165224</span></span>
+<span><span class="co">#&gt; [1,]    0 0.4214826 -0.1284121</span></span>
+<span><span class="co">#&gt; [2,]    0 0.0000000  0.9287262</span></span>
 <span><span class="co">#&gt; [3,]    0 0.0000000  0.0000000</span></span></code></pre></div>
 <p>Finally, we demonstrate how to extract posterior samples of total,
 indirect, and path-wise effects, similar to how we did for the direct
@@ -455,13 +469,13 @@ effects.</p>
 <code>get_total_samples</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tot_samples</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_total_samples.html">get_total_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, <span class="fl">3</span>, ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">tot_samples</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of total effects of X3 on X1"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">tot_samples</span>, breaks <span class="op">=</span> <span class="fl">30</span>,  main <span class="op">=</span> <span class="st">"Histogram of posterior samples of total effects of X3 on X1"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
 <p>For path-wise effect, we use the function
 <code>get_indirect_samples</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_samples</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_indirect_samples.html">get_indirect_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, <span class="fl">3</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">path_samples</span>, main <span class="op">=</span> <span class="st">"Histogram of posterior samples of the effect of X3 on X1 through X2"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">path_samples</span>, breaks <span class="op">=</span> <span class="fl">30</span>,  main <span class="op">=</span> <span class="st">"Histogram of posterior samples of the effect of X3 on X1 through X2"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <p>For the joint effect of non-direct paths, we still use the function
 <code>get_indirect_samples</code>. In this case we need to set
@@ -470,7 +484,7 @@ this case, since there is only 1 indirect path, the indirect effect will
 be identical to the path-wise effect we just examined</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind_samples</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_indirect_samples.html">get_indirect_samples</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">raw</span>, <span class="fl">3</span>, path <span class="op">=</span> <span class="st">"all"</span>, ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">ind_samples</span>, , main <span class="op">=</span> <span class="st">"Histogram of posterior samples of indirect effects of X3 on X1"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">ind_samples</span>,  breaks <span class="op">=</span> <span class="fl">30</span>,  main <span class="op">=</span> <span class="st">"Histogram of posterior samples of indirect effects of X3 on X1"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="FLOW-MR-tutorial_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 </div>
 </div>
